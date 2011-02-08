@@ -5,12 +5,10 @@ set -e
 # Next environment variables has to be set:
 # 1. RESIN_HOME - home directory of resin application server
 # 2. JAVA_HOME - home directory of JRE
-# 3. DB_USERNAME - username for database
-# 4. DB_PASSWORD - password for database
-# 5. DB_URL - url for database
-# 6. APP_PORT - port listened by application
-# 7. APP_PROJECT_ROOT - project root (directory where source files are located)
-# 8. APP_HOME - application home (directory where logs, out, compiled jsps, etc are located)
+# 3. APP_PORT - port listened by application
+# 4. APP_PROJECT_ROOT - project root (directory where source files are located)
+# 5. APP_HOME_ROOT - application home (directory where logs, out, compiled jsps, etc are located)
+# 6. APP_RESIN_PID
 
 
 start() {
@@ -31,14 +29,13 @@ start() {
 	-Dcom.sun.management.jmxremote.authenticate=false \
 	-Dcom.sun.management.jmxremote.ssl=false \
 	\
-	-Dapp.db.username=$DB_USERNAME \
-	-Dapp.db.password=$DB_PASSWORD \
-	-Dapp.db.url=$DB_URL \
 	-Dapp.server.port=$APP_PORT \
 	-Dapp.project.root=$APP_PROJECT_ROOT \
 	-Dresin.home=$RESIN_HOME \
-	-Dapp.home.root=$APP_HOME \
+	-Dapp.home.root=$APP_HOME_ROOT \
 	-Dfile.prefix.for.log4j=file:// \
+	\
+	-pid $APP_RESIN_PID \
 	\
 	start -conf  $APP_PROJECT_ROOT/study/study-misc/misc/conf/resin-3.1.conf > /dev/null
 
@@ -47,7 +44,7 @@ start() {
 
 stop() {
         echo -n "Shutting down Resin: "
-        $RESIN_HOME/bin/httpd.sh stop  > /dev/null
+        $RESIN_HOME/bin/httpd.sh -pid $APP_RESIN_PID stop  > /dev/null
         echo "[DONE]"
 }
 
@@ -65,8 +62,6 @@ stop() {
 if [ -n "$1" ]; then
 	case "$1" in
 	  start)
-		stop
-		sleep 5
 		start
 		;;
 	  stop)

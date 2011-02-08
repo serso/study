@@ -1,29 +1,26 @@
- #!/bin/bash
- #
- set -e
+#!/bin/bash
+#
+set -e
 
- # home directory of resin application server
- export RESIN_HOME=/home/ssolovyev/servers/resin-3.1.10
+# home directory of resin application server
+export RESIN_HOME=/home/ssolovyev/servers/resin-3.1.10
 
- # home directory of JRE
- export JAVA_HOME=/usr/lib/jvm/java-6-sun
+# home directory of JRE
+export JAVA_HOME=/usr/lib/jvm/java-6-sun
 
- # username for database
- export DB_USERNAME=
+# port listened by application
+export APP_PORT=8080
 
- # password for glibs database
- export DB_PASSWORD=
+# project root (directory where source and configuration files are located)
+export APP_PROJECT_ROOT=/home/ssolovyev/projects/org.solovyev/study
 
- # url for database
- export DB_URL=
+# application home (directory where logs, out, compiled jsps, etc are located)
+export APP_HOME_ROOT=/home/ssolovyev/applications/web/study
 
- # port listened by application
- export APP_PORT=8080
+# application home (directory where logs, out, compiled jsps, etc are located)
+export APP_HOME_ROOT=/home/ssolovyev/applications/web/study
 
- # project root (directory where source files are located)
- export APP_PROJECT_ROOT=/home/ssolovyev/projects/org.solovyev/study
+# pid of resin
+export $APP_RESIN_PID=resin_study_01
 
- # application home (directory where logs, out, compiled jsps, etc are located)
- export APP_HOME=/home/ssolovyev/applications/web/study
-
- $APP_PROJECT_ROOT/study/study-misc/misc/conf/resin.sh $1
+$APP_PROJECT_ROOT/study/study-misc/misc/conf/resin.sh $1
