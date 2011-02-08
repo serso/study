@@ -1,0 +1,100 @@
+/*
+ * Copyright (c) 2009-2010. Created by serso.
+ *
+ * For more information, please, contact serso1988@gmail.com.
+ */
+
+table.message-box-error {
+	border: 1px solid #ffc2c2;
+	background: #fff6f6;
+	padding: 5px 5px 5px 5px;
+}
+
+table.message-box-warning {
+	border: 1px solid #ffcc33;
+	background: #ffffcc;
+	padding: 5px 5px 10px 5px;
+}
+
+table.message-box-info {
+	border: 1px solid #9999ff;
+	background: #edefff;
+	padding: 5px 5px 10px 5px;
+}
+
+.form-input {
+	width: 100px;
+}
+
+table, td, tr, th, a, p, body, html {
+	font: 1.083em/1.54em Verdana, sans-serif;
+	font-size: 12px;
+}
+
+a {
+	text-decoration: underline;
+	color: blue;
+	cursor: pointer;
+}
+
+.th-form {
+	font-weight: bold;
+	background-color: #ccccff;
+}
+
+.td-form {
+	vertical-align: top;
+	padding: 3px 3px 3px 3px;
+}
+
+.table-form {
+	border-spacing: 0;
+	padding: 0 0 0 0;
+}
+
+.td-form, .th-form {
+	padding-left: 10px;
+	text-align: left;
+}
+
+.table-content {
+}
+
+.td-content, tr-content {
+
+}
+
+.td-content {
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.form-input, .form-select {
+	width: 120px;
+}
+
+.error {
+	border-color: #ff6666;
+	border-width: 1px;
+	background-color: #fff6f6;
+}
+
+.img {
+	text-decoration: none;
+}
+
+.do_not_wrap {
+	white-space: nowrap;
+}
+
+#container {
+	display: table;
+}
+
+#row {
+	display: table-row;
+}
+
+#left, #right, #middle, #cell {
+	display: table-cell;
+}

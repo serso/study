@@ -1,0 +1,52 @@
+#!/bin/bash
+#
+
+set -e
+
+export RESIN_HOME=`cat /home/serso/.profile | grep RESIN_HOME | cut -d"=" -f2`
+export PROJECTS_ROOT=`cat /home/serso/.profile | grep PROJECTS_ROOT | cut -d"=" -f2`
+export JAVA_HOME=${PROJECTS_ROOT}/java/jdk/java-6-sun
+
+#echo $RESIN_HOME
+#echo $PROJECTS_ROOT
+
+#echo ${PROJECTS_ROOT}/java/study-maven
+
+start() {
+        echo -n "Starting Resin: "
+        ${RESIN_HOME}/bin/httpd.sh \
+        -DappHome=${PROJECTS_ROOT}/java/apps/study-maven \
+        start -conf ${PROJECTS_ROOT}/java/study-maven/study/study-misc/misc/conf/resin-3.1.conf
+        echo "[DONE]"
+}
+
+stop() {
+        echo -n "Shutting down Resin: "
+        $RESIN_HOME/bin/httpd.sh stop
+        echo "[DONE]"
+}
+
+if [ -n "$1" ]; then
+	case "$1" in
+	  start)
+		start
+		;;
+	  stop)
+		stop
+		;;
+	  restart)
+		stop
+		sleep 5
+		start
+		;;
+	  *)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+		;;
+	esac
+else
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+fi
+
+exit 0 
