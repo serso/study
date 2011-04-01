@@ -13,6 +13,7 @@
 
 	<bean id="configurationLoader"
 		  class="org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader"/>
+
 	<bean id="errorCodeConverter" class="org.springmodules.validation.bean.converter.KeepAsIsErrorCodeConverter"/>
 	<bean id="beanValidator" class="org.springmodules.validation.bean.BeanValidator">
 		<property name="configurationLoader" ref="configurationLoader"/>
@@ -30,12 +31,10 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
-	<context:component-scan base-package="org.solovyev"/>
-
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
 
-	<bean id="dataSource" class="org.solovyev.common.db.XBasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306"/>
 		<property name="username" value="study_user"/>
@@ -43,41 +42,53 @@
 		<property name="connectionProperties" value="useUnicode=true;characterEncoding=utf8"/>
 	</bean>
 
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+<!--	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+
 		<property name="dataSource" ref="dataSource"/>
-		<property name="annotatedPackages">
-			<list>
-				<value>org.solovyev.study.model</value>
-			</list>
-		</property>
+
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.MySQLDialect
-				</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+
+		<property name="packagesToScan">
+			<list>
+				<value>org.solovyev</value>
+			</list>
+		</property>
+
+		<property name="annotatedPackages">
+			<list>
+				<value>org.solovyev.study.model.address</value>
+			</list>
+		</property>
+
+	</bean>-->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+		<property name="dataSource" ref="dataSource"/>
+
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:org/solovyev/study/model/address/Address.hbt.xml</value>
+				<value>classpath:org/solovyev/study/model/partner/Partner.hbt.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
 			</props>
 		</property>
 	</bean>
 
-	<bean id="addressDao" class="org.solovyev.study.model.dao.AddressDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-
-	<!--	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter">
-		<property name="database" value="MYSQL"/>
-		<property name="showSql" value="true"/>
-	</bean>
-
-	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource"/>
-		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
-	</bean>
-
-	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="entityManagerFactory" ref="entityManagerFactory"/>
-		<property name="dataSource" ref="dataSource"/>
-	</bean>-->
 
 	<import resource="security.xml"/>
+
+	<context:component-scan base-package="org.solovyev"/>
 
 </beans>

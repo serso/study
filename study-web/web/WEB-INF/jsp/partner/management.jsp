@@ -1,7 +1,7 @@
 <%@ page import="org.solovyev.study.controllers.partner.PartnerSearchController" %>
 <%@ page import="org.solovyev.study.model.Gender" %>
-<%@ page import="org.solovyev.study.model.Partner" %>
-<%@ page import="org.solovyev.study.model.PartnerRole" %>
+<%@ page import="org.solovyev.study.model.partner.Partner" %>
+<%@ page import="org.solovyev.study.model.partner.PartnerRole" %>
 <%@ page import="org.solovyev.study.model.PartnerType" %>
 <%@ page import="org.solovyev.study.resources.Config" %>
 <%--
@@ -20,16 +20,18 @@
 <head>
 	<%@ include file="/WEB-INF/include/header.h" %>
 	<title>Partner search</title>
+
 	<style type="text/css">
-		@import "/resources/css/table.css";
+		@import "<c:url value="/resources/css/table.css"/>";
 	</style>
-	<script type="text/javascript" src="/resources/javascript/jquery-1.4.2.js"></script>
-	<script type="text/javascript" src="/resources/javascript/jquery.dataTables.js"></script>
+	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery-1.4.2.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/javascript/jquery.dataTables.js"/>"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#partner-table').dataTable();
 		});
 	</script>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/include/content_start.h" %>
@@ -63,7 +65,7 @@
 							</thead>
 							<tbody>
 							<c:forEach items="${partners}" var="partner" varStatus="partnerStatus">
-								<%--@elvariable id="partner" type="org.solovyev.study.model.Partner"--%>
+								<%--@elvariable id="partner" type="org.solovyev.study.model.partner.Partner"--%>
 								<tr>
 									<td>${partnerStatus.index + 1}</td>
 									<td>
@@ -77,9 +79,9 @@
 										</c:choose>
 									</td>
 									<td>
-										<s:url var="partnerUrl" value="/partner/view.do">
-											<s:param name="partnerId" value="${partner.id}"/>
-										</s:url>
+										<c:url var="partnerUrl" value="/partner/view.do">
+											<c:param name="partnerId" value="${partner.id}"/>
+										</c:url>
 										<a onclick="sendRequest('${partnerUrl}', {'backRouteAction': '/partner/back.to.management.do'}, 'POST');">
 												${partner.fullName}
 										</a>
@@ -89,9 +91,9 @@
 										<c:forEach items="${partner.linkedUsers}" var="linkedUser"
 												   varStatus="linkedUsersStatus">
 											<%--@elvariable id="linkedUser" type="org.solovyev.study.model.User"--%>
-											<s:url value="/user/view.do" var="viewUserUrl">
-												<s:param name="userId" value="${linkedUser.id}"/>
-											</s:url>
+											<c:url value="/user/view.do" var="viewUserUrl">
+												<c:param name="userId" value="${linkedUser.id}"/>
+											</c:url>
 											<a onclick="sendRequest('${viewUserUrl}', {'backRouteAction': '/partner/back.to.management.do'}, 'POST');">${linkedUser.username}</a>
 											<c:if test="${!linkedUsersStatus.last}">, </c:if>
 										</c:forEach>
@@ -115,25 +117,23 @@
 										<fmt:formatDate value="${partner.modificationDate}"
 														pattern="<%=Config.DATE_AND_TIME_PATTERN%>"/></td>
 									<td class="do_not_wrap">
-										<s:url value="/partner/edit.do" scope="request" var="editPartnerUrl">
-											<s:param name="partnerId" value="${partner.id}"/>
-										</s:url>
-										<s:url value="/partner/delete.do" scope="request" var="deletePartnerUrl">
-											<s:param name="partnerId" value="${partner.id}"/>
-										</s:url>
-										<s:url var="partnerUrl" value="/partner/view.do">
-											<s:param name="partnerId" value="${partner.id}"/>
-										</s:url>
-										<a onclick="sendRequest('${partnerUrl}', {'backRouteAction': '/partner/back.to.management.do'}, 'POST');"
-										   class="img">
-											<img src="/resources/images/actions/view.png" alt="View" border="0">
+										<c:url value="/partner/edit.do" scope="request" var="editPartnerUrl">
+											<c:param name="partnerId" value="${partner.id}"/>
+										</c:url>
+										<c:url value="/partner/delete.do" scope="request" var="deletePartnerUrl">
+											<c:param name="partnerId" value="${partner.id}"/>
+										</c:url>
+										<c:url var="partnerUrl" value="/partner/view.do">
+											<c:param name="partnerId" value="${partner.id}"/>
+										</c:url>
+										<a onclick="sendRequest('${partnerUrl}', {'backRouteAction': '/partner/back.to.management.do'}, 'POST');" class="img">
+											<img src="<c:url value='/resources/images/actions/view.png'/>" alt="View" border="0">
 										</a>
-										<a onclick="sendRequest('${editPartnerUrl}', {'backRouteAction': '/partner/back.to.management.do'}, 'POST');"
-										   class="img">
-											<img src="/resources/images/actions/edit.png" alt="Edit" border="0">
+										<a onclick="sendRequest('${editPartnerUrl}', {'backRouteAction': '/partner/back.to.management.do'}, 'POST');" class="img">
+											<img src="<c:url value='/resources/images/actions/edit.png'/>" alt="Edit" border="0">
 										</a>
 										<a href="${deletePartnerUrl}" class="img">
-											<img src="/resources/images/actions/delete.png" alt="Delete" border="0">
+											<img src="<c:url value='/resources/images/actions/delete.png'/>" alt="Delete" border="0">
 										</a>
 									</td>
 								</tr>
@@ -149,19 +149,21 @@
 				<table class="table-form" width="100%">
 					<tr class="tr-form">
 						<td class="td-form">
+
 							<%@ include file="/WEB-INF/include/back_button.h" %>
+
 							<c:if test="${fn:length(partners) > 0}">
 								<c:forEach items="${partnerSelector.buttons}" var="button" varStatus="buttonStatus">
 									<%--@elvariable id="button" type="org.solovyev.common.html.Button"--%>
 									<input type="button" id="selectPartnerButton_${buttonStatus.index}"
 										   value="${button.value}"
-										   onclick="submitForm('selectPartnerButton_${buttonStatus.index}', '<%=PartnerSearchController.PARTNER_SELECTOR_MODEL%>', '${button.action}', 'POST');"/>
+										   onclick="submitForm('selectPartnerButton_${buttonStatus.index}', '<%=PartnerSearchController.PARTNER_SELECTOR_MODEL%>', '<c:url value="${button.action}"/>', 'POST');"/>
 								</c:forEach>
 							</c:if>
 						</td>
 						<td class="td-form" style="text-align:right;">
 							<input type="button" id="createButton" value="New partner"
-								   onclick="pressButtonWithParams('createButton', '/partner/create.do', 'POST', {'backRouteAction': '/partner/back.to.management.do'});"/>
+								   onclick="pressButtonWithParams('createButton', '<c:url value="/partner/create.do"/>', 'POST', {'backRouteAction': '<c:url value="/partner/back.to.management.do"/>'});"/>
 						</td>
 					</tr>
 				</table>
@@ -251,7 +253,7 @@
 			<tr class="tr-form">
 				<td class="td-form" colspan="2">
 					<input id="searchButton" name="searchButton" type="button" value="Search"
-						   onclick="submitForm('searchButton', '<%=PartnerSearchController.PARTNER_SEARCH_PARAMS_MODEL%>', '/partner/search.do', 'POST');"/>
+						   onclick="submitForm('searchButton', '<%=PartnerSearchController.PARTNER_SEARCH_PARAMS_MODEL%>', '<c:url value="/partner/search.do"/>', 'POST');"/>
 				</td>
 			</tr>
 		</table>

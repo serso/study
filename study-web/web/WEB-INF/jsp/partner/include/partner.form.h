@@ -6,17 +6,17 @@
   ~ For more information, please, contact serso1988@gmail.com.
   --%>
 
-<%--@elvariable id="partner" type="org.solovyev.study.model.Partner"--%>
+<%--@elvariable id="partner" type="org.solovyev.study.model.partner.Partner"--%>
 <%--@elvariable id="editPartner" type="java.lang.Boolean"--%>
 
 <c:choose>
 	<c:when test="${editPartner}">
-		<c:set var="action" value="/partner/save.edited.do"/>
-		<c:set var="backRouteAction" value="/partner/back.to.edit.do"/>
+		<c:url var="action" value="/partner/save.edited.do"/>
+		<c:url var="backRouteAction" value="/partner/back.to.edit.do"/>
 	</c:when>
 	<c:otherwise>
-		<c:set var="action" value="/partner/save.new.do"/>
-		<c:set var="backRouteAction" value="/partner/back.to.create.do"/>
+		<c:url var="action" value="/partner/save.new.do"/>
+		<c:url var="backRouteAction" value="/partner/back.to.create.do"/>
 	</c:otherwise>
 </c:choose>
 
@@ -33,7 +33,7 @@
 				<td class="td-form"><label for="partnerType">Partner Type</label></td>
 				<td class="td-form">
 
-					<form name="partnerTypeForm" action="/partner/create.do" method="POST">
+					<form name="partnerTypeForm" action="<c:url value="/partner/create.do"/>" method="POST">
 						<select id="partnerType" class="form-select" name="type"
 								onchange="document.partnerTypeForm.submit();">
 							<c:forEach items="<%=PartnerType.values()%>" var="type">
@@ -65,7 +65,7 @@
 				<form:label path="partnerRoles">Partner Roles</form:label>
 			</td>
 			<td class="td-form">
-				<form:select path="partnerRoles" items="${partner.applyablePartnerRoles}"
+				<form:select path="partnerRoles" items="${partner.applicablePartnerRoles}"
 							 multiple="${partner.naturalPerson?'true':'false'}" cssClass="form-select"
 							 cssErrorClass="error form-select"
 							 onchange="checkPartnerDetailsForRole()"/>
@@ -107,7 +107,7 @@
 			</td>
 			<td class="td-form">
 				<input id="editAddressesButton" type="button" value="Edit addresses"
-					   onclick="submitFormWithParams('editAddressesButton', '<%=PartnerCreateEditController.PARTNER_MODEL%>', '/partner/edit.addresses.do', 'POST', {'backRouteAction': '${backRouteAction}'})"/>
+					   onclick="submitFormWithParams('editAddressesButton', '<%=PartnerCreateEditController.PARTNER_MODEL%>', '<c:url value="/partner/edit.addresses.do"/>', 'POST', {'backRouteAction': '${backRouteAction}'})"/>
 			</td>
 			<td class="td-form">
 				&nbsp;
@@ -120,7 +120,7 @@
 			</td>
 			<td class="td-form">
 				<input id="editSchoolDetails" type="button" value="Edit details"
-					   onclick="submitFormWithParams('editSchoolDetails', '<%=PartnerCreateEditController.PARTNER_MODEL%>', '/partner/edit.details.do', 'POST', {'backRouteAction': '${backRouteAction}'})"/>
+					   onclick="submitFormWithParams('editSchoolDetails', '<%=PartnerCreateEditController.PARTNER_MODEL%>', '<c:url value="/partner/edit.details.do"/>', 'POST', {'backRouteAction': '${backRouteAction}'})"/>
 			</td>
 			<td class="td-form">
 				&nbsp;

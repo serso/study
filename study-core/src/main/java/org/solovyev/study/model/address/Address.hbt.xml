@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="org.solovyev.study.model.address.Address" table="addresses" schema="study" entity-name="address">
+
+		<id name="id" type="java.lang.Integer" column="address_id">
+			<generator class="native"/>
+		</id>
+
+		<property name="partnerId" type="java.lang.Integer" not-null="true" column="partner_id"/>
+
+		<property name="addressType" not-null="true" column="address_type" length="20">
+			<type name="org.solovyev.study.db.GenericEnumUserType">
+				<param name="enumClass">org.solovyev.study.model.AddressType</param>
+			</type>
+		</property>
+
+		<property name="country" type="java.lang.String" not-null="false" column="country" length="255"/>
+
+		<property name="city" type="java.lang.String" not-null="false" column="city" length="255"/>
+
+		<property name="street" type="java.lang.String" not-null="false" column="street" length="255"/>
+
+		<property name="house" type="java.lang.String" not-null="false" column="house" length="255"/>
+
+		<property name="apartment" type="java.lang.String" not-null="false" column="apartment" length="255"/>
+
+		<property name="phoneNumber" type="java.lang.String" not-null="false" column="phone_number" length="255"/>
+
+		<property name="email" type="java.lang.String" not-null="false" column="email" length="255"/>
+
+		<property name="postalCode" type="java.lang.String" not-null="false" column="postal_code" length="255"/>
+
+		<property name="main" type="java.lang.Boolean" not-null="true" column="is_main" length="255"/>
+
+
+	</class>
+</hibernate-mapping>

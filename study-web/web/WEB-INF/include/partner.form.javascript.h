@@ -1,4 +1,4 @@
-<%@ page import="org.solovyev.study.model.PartnerRole" %>
+<%@ page import="org.solovyev.study.model.partner.PartnerRole" %>
 <script type="text/javascript">
 function checkPartnerDetailsForRole() {
 	var partnerRoles = new Object();

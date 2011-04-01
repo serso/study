@@ -1,12 +1,12 @@
 package org.solovyev.study.services;
 
 import org.jetbrains.annotations.NotNull;
+import org.solovyev.study.model.address.AddressDaoImpl;
+import org.solovyev.study.model.address.Address;
+import org.solovyev.study.model.address.AddressDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.solovyev.study.model.Address;
-import org.solovyev.study.model.Partner;
-import org.solovyev.study.model.dao.AddressDao;
-import org.solovyev.study.model.dao.AddressDaoImpl;
+import org.solovyev.study.model.partner.Partner;
 
 import javax.sql.DataSource;
 import java.util.List;

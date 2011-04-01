@@ -1,13 +1,10 @@
 <%@ page import="org.solovyev.study.controllers.partner.PartnerSearchController" %>
-<%@ page import="org.solovyev.study.model.Partner" %>
+<%@ page import="org.solovyev.study.model.partner.Partner" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="org.solovyev.study.model.NaturalPerson" %>
-<%@ page import="org.solovyev.study.model.LegalPerson" %>
+<%@ page import="org.solovyev.study.model.partner.NaturalPerson" %>
+<%@ page import="org.solovyev.study.model.partner.LegalPerson" %>
 <%@ page import="org.solovyev.study.controllers.test.TestController" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="s" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   ~ Copyright (c) 2009-2010. Created by serso.
   ~
@@ -24,10 +21,7 @@
 <head>
 	<%@ include file="/WEB-INF/include/header.h" %>
 	<title>Partner search</title>
-	<script type="text/javascript" src="/resources/javascript/common.js"></script>
-	<style type="text/css">
-		@import "/resources/css/table.css";
-	</style>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/include/content_start.h" %>
@@ -73,7 +67,7 @@
 						<tbody>
 						<c:forEach items="${partners}" var="partner" varStatus="partnerStatus">
 							<c:set var="partner" value="${partner}"/>
-							<%--@elvariable id="partner" type="org.solovyev.study.model.Partner"--%>
+							<%--@elvariable id="partner" type="org.solovyev.study.model.partner.Partner"--%>
 							<tr>
 								<td>
 									<c:choose>
@@ -94,12 +88,14 @@
 								<td>${partner.creatorId}</td>
 								<td>${partner.modificationDate}</td>
 								<td>
-									<s:url value="edit.partner.do" scope="request" var="editPartnerUrl">
-										<s:param name="partnerId" value="${partner.id}"/>
-									</s:url>
-									<s:url value="delete.partner.do" scope="request" var="deletePartnerUrl">
-										<s:param name="partnerId" value="${partner.id}"/>
-									</s:url>
+									<c:url value="/partner/edit.do" scope="request" var="editPartnerUrl">
+										<c:param name="partnerId" value="${partner.id}"/>
+									</c:url>
+
+									<c:url value="/partner/delete.do" scope="request" var="deletePartnerUrl">
+										<c:param name="partnerId" value="${partner.id}"/>
+									</c:url>
+
 									<a href="${editPartnerUrl}">Edit</a>&nbsp;
 									<a href="${deletePartnerUrl}">Delete</a>
 								</td>

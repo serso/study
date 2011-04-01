@@ -4,11 +4,10 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model.dao;
+package org.solovyev.study.model.address;
 
 import org.jetbrains.annotations.NotNull;
-import org.solovyev.study.model.Address;
-import org.solovyev.study.model.Partner;
+import org.solovyev.study.model.partner.Partner;
 
 import java.util.List;
 
@@ -38,7 +37,7 @@ public interface AddressDao {
 
 	/**
 	 * Method inserts all addresses belonging to current partner.
-	 * @param partner partner which addreses will be inserted
+	 * @param partner partner which addresses will be inserted
 	 */
 	void insert(@NotNull Partner partner);
 }

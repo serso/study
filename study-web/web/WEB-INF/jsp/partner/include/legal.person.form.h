@@ -9,7 +9,7 @@
 <%@ page import="org.solovyev.study.controllers.partner.PartnerCreateEditController" %>
 <%@ page import="org.solovyev.study.model.Gender" %>
 
-<%--@elvariable id="partner" type="org.solovyev.study.model.Partner"--%>
+<%--@elvariable id="partner" type="org.solovyev.study.model.partner.Partner"--%>
 <%--@elvariable id="editPartner" type="java.lang.Boolean"--%>
 
 <tr class="tr-form">

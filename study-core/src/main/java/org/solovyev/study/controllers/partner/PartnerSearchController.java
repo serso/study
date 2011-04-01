@@ -6,6 +6,7 @@
 
 package org.solovyev.study.controllers.partner;
 
+import org.solovyev.study.model.partner.Partner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

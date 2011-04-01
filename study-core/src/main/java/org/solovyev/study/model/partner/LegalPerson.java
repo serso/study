@@ -4,10 +4,11 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.partner;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.solovyev.study.model.PartnerType;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.InThePast;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;

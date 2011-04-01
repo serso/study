@@ -8,5 +8,5 @@
 
 <%--@elvariable id="backButton" type="org.solovyev.common.html.Button"--%>
 <c:if test="${backButton != null && fn:length(backButton.action) > 0}">
-	<input id="backButton" type="button" value="${backButton.value}" onclick="pressButton('backButton','${backButton.action}', 'POST');"/>
+	<input id="backButton" type="button" value="${backButton.value}" onclick="pressButton('backButton','<c:url value="${backButton.action}"/>', 'POST');"/>
 </c:if>

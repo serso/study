@@ -6,6 +6,7 @@
 
 package org.solovyev.study.controllers.partner;
 
+import org.solovyev.study.model.partner.Partner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.solovyev.common.definitions.MessageType;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.model.DataObjectAction;
-import org.solovyev.study.model.Partner;
 import org.solovyev.study.resources.ApplicationContextProvider;
 import org.solovyev.study.resources.Config;
 import org.solovyev.study.resources.MessageCodes;

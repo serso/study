@@ -16,17 +16,22 @@
 <html>
 <head>
 	<title>User search</title>
+
 	<style type="text/css">
-		@import "/resources/css/table.css";
+		@import "<c:url value='/resources/css/table.css'/>";
 	</style>
+
 	<%@ include file="/WEB-INF/include/header.h" %>
-	<script type="text/javascript" src="/resources/javascript/jquery-1.4.2.js"></script>
-	<script type="text/javascript" src="/resources/javascript/jquery.dataTables.js"></script>
+
+	<script type="text/javascript" src="<c:url value='/resources/javascript/jquery-1.4.2.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/resources/javascript/jquery.dataTables.js'/>"></script>
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#users-table').dataTable();
 		});
 	</script>
+
 </head>
 <body>
 <%@ include file="/WEB-INF/include/content_start.h" %>
@@ -69,7 +74,7 @@
 					<tr class="tr-form">
 						<td class="td-form">&nbsp;</td>
 						<td class="td-form">
-							<input type="submit" value="Search" id="searchButton" onclick="submitForm('searchButton', '<%=UserSearchController.USER_SEARCH_PARAMS_MODEL%>', '/user/search.do', 'POST')"/>
+							<input type="submit" value="Search" id="searchButton" onclick="submitForm('searchButton', '<%=UserSearchController.USER_SEARCH_PARAMS_MODEL%>', '<c:url value="/user/search.do"/>', 'POST')"/>
 						</td>
 					</tr>
 				</table>
@@ -114,9 +119,9 @@
 									</c:choose>
 								</td>
 								<td>
-									<s:url value="/user/view.do" var="viewUserUrl">
-										<s:param name="userId" value="${user.id}"/>
-									</s:url>
+									<c:url value="/user/view.do" var="viewUserUrl">
+										<c:param name="userId" value="${user.id}"/>
+									</c:url>
 									<a onclick="sendRequest('${viewUserUrl}', {'backRouteAction': '/user/back.to.management.do'}, 'POST');">
 											${user.username}
 									</a>
@@ -125,7 +130,7 @@
 								<td>${user.userRoles}</td>
 								<td>
 									<c:forEach items="${user.linkedPartners}" var="linkedPartner" varStatus="linkedPartnersStatus">
-										<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.Partner"--%>
+										<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.partner.Partner"--%>
 										${linkedPartner.fullName}
 										<c:if test="${!linkedPartnersStatus.last}">, </c:if>
 									</c:forEach>
@@ -148,41 +153,46 @@
 									<fmt:formatDate value="${user.modificationDate}" pattern="<%=Config.DATE_AND_TIME_PATTERN%>"/></td>
 								<td>${user.enabled}</td>
 								<td class="do_not_wrap">
-									<s:url value="/user/edit.do" scope="request" var="editUserUrl">
-										<s:param name="userId" value="${user.id}"/>
-									</s:url>
-									<s:url value="/user/delete.do" scope="request" var="deleteUserUrl">
-										<s:param name="userId" value="${user.id}"/>
-									</s:url>
-									<s:url value="/user/enable.do" scope="request" var="enableUserUrl">
-										<s:param name="userId" value="${user.id}"/>
-										<s:param name="enable" value="${!user.enabled}"/>
-									</s:url>
-									<s:url value="/user/view.do" var="viewUserUrl">
-										<s:param name="userId" value="${user.id}"/>
-									</s:url>
+
+									<c:url value="/user/edit.do" scope="request" var="editUserUrl">
+										<c:param name="userId" value="${user.id}"/>
+									</c:url>
+
+									<c:url value="/user/delete.do" scope="request" var="deleteUserUrl">
+										<c:param name="userId" value="${user.id}"/>
+									</c:url>
+
+									<c:url value="/user/enable.do" scope="request" var="enableUserUrl">
+										<c:param name="userId" value="${user.id}"/>
+										<c:param name="enable" value="${!user.enabled}"/>
+									</c:url>
+
+									<c:url value="/user/view.do" var="viewUserUrl">
+										<c:param name="userId" value="${user.id}"/>
+									</c:url>
 
 									<a onclick="sendRequest('${viewUserUrl}', {'backRouteAction': '/user/back.to.management.do'}, 'POST');" class="img">
-										<img src="/resources/images/actions/view.png" alt="View" border="0">
+										<img src="<c:url value="/resources/images/actions/view.png"/>" alt="View" border="0">
 									</a>
 
 									<a onclick="sendRequest('${editUserUrl}', {'backRouteAction': '/user/back.to.management.do'}, 'POST');" class="img">
-										<img src="/resources/images/actions/edit.png" alt="Edit" border="0">
+										<img src="<c:url value="/resources/images/actions/edit.png"/>" alt="Edit" border="0">
 									</a>
+
 									<c:choose>
 										<c:when test="${user.enabled}">
 											<a href="${enableUserUrl}" class="img">
-												<img src="/resources/images/actions/disable.png" alt="Disable" border="0">
+												<img src="<c:url value="/resources/images/actions/disable.png"/>" alt="Disable" border="0">
 											</a>
 										</c:when>
 										<c:otherwise>
 											<a href="${enableUserUrl}" class="img">
-												<img src="/resources/images/actions/enable.png" alt="Enable" border="0">
+												<img src="<c:url value="/resources/images/actions/enable.png"/>" alt="Enable" border="0">
 											</a>
 										</c:otherwise>
 									</c:choose>
 									<a href="${deleteUserUrl}" class="img">
-										<img src="/resources/images/actions/delete.png" alt="Delete" border="0">
+										<img src="<c:url value="/resources/images/actions/delete.png"/>" alt="Delete" border="0">
 									</a>
 								</td>
 							</tr>
@@ -202,13 +212,13 @@
 							<c:forEach items="${userSelector.buttons}" var="button" varStatus="buttonStatus">
 								<%--@elvariable id="button" type="org.solovyev.common.html.Button"--%>
 								<input type="button" id="selectUserButton_${buttonStatus.index}" value="${button.value}"
-								       onclick="submitForm('selectUserButton_${buttonStatus.index}', '<%=UserSearchController.USER_SELECTOR_MODEL%>', '${button.action}', 'POST');"/>
+									   onclick="submitForm('selectUserButton_${buttonStatus.index}', '<%=UserSearchController.USER_SELECTOR_MODEL%>', '<c:url value="${button.action}"/>', 'POST');"/>
 							</c:forEach>
 						</c:if>
 					</td>
 					<sec:authorize access="hasAnyRole('administrator','school_employee','developer')">
 						<td class="td-form" align="right" style="text-align:right;">
-							<input type="button" id="createButton" value="New user" onclick="pressButtonWithParams('createButton', '/user/create.do', 'POST', {'backRouteAction': '/user/back.to.management.do'});"/>							
+							<input type="button" id="createButton" value="New user" onclick="pressButtonWithParams('createButton', '<c:url value="/user/create.do"/>', 'POST', {'backRouteAction': '<c:url value="/user/back.to.management.do"/>'});"/>
 						</td>
 					</sec:authorize>
 				</tr>

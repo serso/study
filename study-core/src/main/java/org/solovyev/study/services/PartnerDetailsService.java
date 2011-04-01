@@ -7,12 +7,12 @@
 package org.solovyev.study.services;
 
 import org.jetbrains.annotations.NotNull;
+import org.solovyev.study.model.partner.Partner;
+import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.solovyev.study.model.Partner;
-import org.solovyev.study.model.PartnerRole;
 import org.solovyev.study.model.SchoolDetails;
 import org.solovyev.study.model.db.SQLBuilder;
 import org.solovyev.study.model.db.Tables;

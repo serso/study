@@ -9,9 +9,9 @@
 	<tr class="tr-content">
 		<td class="td-content">
 			<%-- top menu --%>
-			<a href="/">Home</a>
+			<a href="<c:url value="/"/>">Home</a>
 			<c:if test="${applicationUser != null}">
-				| <a href="/logout.do">Log Out</a>
+				| <a href="<c:url value="/logout.do"/>">Log Out</a>
 			</c:if>
 		</td>
 	</tr>
@@ -19,16 +19,16 @@
 		<%--@elvariable id="applicationUser" type="org.solovyev.study.model.User"--%>
 	<tr class="tr-content">
 		<td class="td-content">
-			<s:url var="myProfileUrl" value="/user/view.do">
-				<s:param name="userId" value="${applicationUser.id}"/>
-			</s:url>
+			<c:url var="myProfileUrl" value="/user/view.do">
+				<c:param name="userId" value="${applicationUser.id}"/>
+			</c:url>
 			<a href="${myProfileUrl}">My Profile</a>
 			<sec:authorize access="hasAnyRole('developer','administrator','school_employee')">
-				| <a href="/user/management.do">Users</a>
-				| <a href="/partner/management.do">Partners</a>
+				| <a href="<c:url value="/user/management.do"/>">Users</a>
+				| <a href="<c:url value="/partner/management.do"/>">Partners</a>
 			</sec:authorize>
 			<sec:authorize access="hasRole('developer')">
-				| <a href="/test.action.do">Test page</a>
+				| <a href="<c:url value="/test.action.do"/>">Test page</a>
 			</sec:authorize>
 		</td>
 	</tr>

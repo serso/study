@@ -4,15 +4,20 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.address;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.solovyev.common.definitions.Identity;
+import org.solovyev.study.model.AddressType;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.Email;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
+
 
 /**
  * User: serso
@@ -20,11 +25,9 @@ import javax.persistence.*;
  * Time: 5:32:30 PM
  */
 
-@Entity
-@Table(name = "addresses")
-public class Address{
 
-	@NotNull
+public class Address extends Identity<Integer> implements Serializable {
+
 	private Integer partnerId;
 
 	@NotNull
@@ -32,37 +35,37 @@ public class Address{
 
 	@NotNull
 	@NotBlank
-	@Length (max = 255)
+	@Length(max = 255)
 	private String country = "";
 
 	@NotNull
 	@NotBlank
-	@Length (max = 255)
+	@Length(max = 255)
 	private String city = "";
 
 	@Nullable
-	@Length (max = 255)
+	@Length(max = 255)
 	private String street;
 
 	@Nullable
-	@Length (max = 255)
+	@Length(max = 255)
 	private String house;
 
 	@Nullable
-	@Length (max = 255)
+	@Length(max = 255)
 	private String apartment;
 
 	@Nullable
-	@Length (max = 255)
+	@Length(max = 255)
 	private String phoneNumber;
 
 	@Nullable
 	@Email
-	@Length (max = 255)
+	@Length(max = 255)
 	private String email;
 
 	@Nullable
-	@Length (max = 255)	
+	@Length(max = 255)
 	private String postalCode;
 
 	private boolean main = false;
@@ -170,7 +173,6 @@ public class Address{
 	}
 
 	@Column(name = "partner_id")
-	@ManyToOne(targetEntity = Partner.class, cascade = CascadeType.ALL)
 	@NotNull
 	public Integer getPartnerId() {
 		return partnerId;

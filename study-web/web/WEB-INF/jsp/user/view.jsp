@@ -26,7 +26,7 @@
 <c:set var="linkedPartner" value="${null}"/>
 <c:if test="${fn:length(user.linkedPartners) > 0}">
 	<c:set var="linkedPartner" value="${user.linkedPartners[0]}"/>
-	<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.Partner"--%>
+	<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.partner.Partner"--%>
 </c:if>
 
 <c:set var="male" value="<%=Gender.male.name()%>"/>
@@ -71,7 +71,7 @@
 	<c:if test="${linkedPartner != null}">
 		<c:choose>
 			<c:when test="${linkedPartner.naturalPerson}">
-				<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.NaturalPerson"--%>
+				<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.partner.NaturalPerson"--%>
 				<tr class="tr-form">
 					<td class="th-form">
 						First Name
@@ -106,7 +106,7 @@
 				</tr>
 			</c:when>
 			<c:otherwise>
-				<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.LegalPerson"--%>
+				<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.partner.LegalPerson"--%>
 				<tr class="tr-form">
 					<td class="th-form">
 						Company Name
@@ -133,12 +133,12 @@
 			<%@ include file="/WEB-INF/include/back_button.h" %>
 		</td>
 		<td class="td-form">
-			<s:url var="editUrl" value="/user/edit.do">
-				<s:param name="userId" value="${user.id}"/>
-			</s:url>
-			<s:url var="backRouteUrl" value="/user/back.to.view.do">
-				<s:param name="userId" value="${user.id}"/>
-			</s:url>
+			<c:url var="editUrl" value="/user/edit.do">
+				<c:param name="userId" value="${user.id}"/>
+			</c:url>
+			<c:url var="backRouteUrl" value="/user/back.to.view.do">
+				<c:param name="userId" value="${user.id}"/>
+			</c:url>
 			<input id="editButton" type="button" value="Edit" onclick="pressButtonWithParams('editButton','${editUrl}', 'POST', {'backRouteAction':'${backRouteUrl}'});"/>
 		</td>
 	</tr>
