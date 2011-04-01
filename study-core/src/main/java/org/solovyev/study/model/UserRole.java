@@ -8,6 +8,7 @@ package org.solovyev.study.model;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.security.core.GrantedAuthority;
 
 /**

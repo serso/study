@@ -9,12 +9,12 @@
 <c:choose>
 	<c:when test="${editUser}">
 		<c:set var="action" value="/user/save.edited.do"/>
-		<c:set var="backRouteAction" value="/user/back.to.edit.user.do"/>
+		<c:url var="backRouteAction" value="/user/back.to.edit.user.do"/>
 		<c:set var="currentView" value="/user/edit"/>
 	</c:when>
 	<c:otherwise>
 		<c:set var="action" value="/user/save.new.do"/>
-		<c:set var="backRouteAction" value="/user/back.to.create.user.do"/>
+		<c:url var="backRouteAction" value="/user/back.to.create.user.do"/>
 		<c:set var="currentView" value="/user/create"/>
 	</c:otherwise>
 </c:choose>
@@ -111,7 +111,7 @@
 			</td>
 		</tr>
 		<c:forEach items="${user.linkedPartners}" var="linkedPartner" varStatus="linkedPartnerStatus">
-			<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.Partner"--%>
+			<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.partner.Partner"--%>
 			<tr class="tr-form">
 				<td class="td-form">${linkedPartnerStatus.index == 0 ? 'Linked partners' : ''}</td>
 				<td class="td-form">

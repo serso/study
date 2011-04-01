@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.definitions.Identity;
 import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.study.model.partner.PartnerRole;
 
 import java.util.ArrayList;
 import java.util.List;

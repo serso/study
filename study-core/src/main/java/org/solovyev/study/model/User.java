@@ -2,6 +2,8 @@ package org.solovyev.study.model;
 
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.study.model.partner.Partner;
+import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.*;

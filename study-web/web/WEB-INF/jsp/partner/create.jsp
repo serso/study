@@ -1,4 +1,4 @@
-<%@ page import="org.solovyev.study.model.PartnerRole" %>
+<%@ page import="org.solovyev.study.model.partner.PartnerRole" %>
 <%@ page import="org.solovyev.study.model.PartnerType" %>
 <%--
   ~ Copyright (c) 2009-2010. Created by serso.

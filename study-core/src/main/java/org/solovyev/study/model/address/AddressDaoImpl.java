@@ -4,26 +4,23 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model.dao;
+package org.solovyev.study.model.address;
 
-import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
-import org.hibernate.SessionFactory;
 import org.jetbrains.annotations.NotNull;
+import org.solovyev.common.utils.StringsUtils;
+import org.solovyev.study.model.AddressType;
+import org.solovyev.study.model.CustomHibernateDaoSupport;
+import org.solovyev.study.model.partner.Partner;
+import org.solovyev.study.model.db.SQLBuilder;
+import org.solovyev.study.model.db.Tables;
+import org.solovyev.study.model.db.tables.addresses;
+import org.solovyev.study.resources.Config;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.solovyev.common.utils.StringsUtils;
-import org.solovyev.study.model.Address;
-import org.solovyev.study.model.AddressType;
-import org.solovyev.study.model.Partner;
-import org.solovyev.study.model.db.SQLBuilder;
-import org.solovyev.study.model.db.Tables;
-import org.solovyev.study.model.db.tables.addresses;
-import org.solovyev.study.resources.Config;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -35,37 +32,16 @@ import java.util.List;
  * Time: 11:57:49 PM
  */
 
-public class AddressDaoImpl implements AddressDao {
-	                      //todo serso: just delete
-	private HibernateTemplate hibernateTemplate;
-
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
-	}
+@Repository("addressDao")
+public class AddressDaoImpl extends CustomHibernateDaoSupport implements AddressDao {
 
 	public AddressDaoImpl() {
 	}
 
 	@NotNull
 	public List<Address> load(@NotNull Integer partnerId) {
-		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-		SQLBuilder sqlBuilder = new SQLBuilder().select().columns("a", addresses.values()).from().tables(Config.DATABASE_SCHEMA, Tables.addresses.name(), "a").where();
-		sqlBuilder.equalsCondition("a", addresses.partner_id.name(), partnerId, mapSqlParameterSource);
-		final org.hibernate.classic.Session session = hibernateTemplate.getSessionFactory().openSession();
-		org.hibernate.Transaction transaction = null;
-		try {
-			transaction = session.beginTransaction();
-			//session.load(Address.class, )
-			transaction.commit();
-		} catch (HibernateException e) {
-			transaction.rollback();
-			Logger.getLogger(this.getClass()).error(e);
-		} finally {
-			session.close();
-		}
-
-		// todo serso: remove
-		return null;//getSimpleJdbcTemplate().query(sqlBuilder.toString(), new AddressRowMapper(), mapSqlParameterSource);
+		//noinspection unchecked
+		return (List<Address>)getHibernateTemplate().find("from address as a where a.partnerId = ? ", partnerId);
 	}
 
 	private SimpleJdbcTemplate getSimpleJdbcTemplate() {
@@ -75,8 +51,12 @@ public class AddressDaoImpl implements AddressDao {
 
 	public int delete(@NotNull Integer partnerId) {
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
+
 		SQLBuilder sqlBuilder = new SQLBuilder().delete().from().tables(Config.DATABASE_SCHEMA, Tables.addresses.name()).where();
 		sqlBuilder.equalsCondition(null, addresses.partner_id.name(), partnerId, mapSqlParameterSource);
+
+		getHibernateTemplate().delete("form address");
+
 		return getSimpleJdbcTemplate().update(sqlBuilder.toString(), mapSqlParameterSource);
 	}
 

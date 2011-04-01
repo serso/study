@@ -10,7 +10,7 @@ import org.solovyev.common.utils.CollectionsUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-import org.solovyev.study.model.Partner;
+import org.solovyev.study.model.partner.Partner;
 import org.solovyev.study.model.User;
 import org.solovyev.study.model.UserRole;
 

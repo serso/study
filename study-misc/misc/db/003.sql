@@ -9,6 +9,7 @@ insert into address_types values ('residence');
 insert into address_types values ('office');
 
 create table addresses (
+	address_id int unsigned auto_increment not null,
 	partner_id int unsigned not null,
     address_type varchar(20) not null,
     country varchar(255) null,
@@ -20,6 +21,8 @@ create table addresses (
     email varchar(255) null,
     postal_code varchar(255) null,
     is_main varchar(5) not null default 'false',
+
+	primary key(address_id),
 
 	constraint `address_type_in_addresses_fk`
 	foreign key (address_type) references address_types(address_type)

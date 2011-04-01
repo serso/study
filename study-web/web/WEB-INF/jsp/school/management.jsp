@@ -1,5 +1,5 @@
-<%@ page import="org.solovyev.study.model.Partner" %>
-<%@ page import="org.solovyev.study.model.PartnerRole" %>
+<%@ page import="org.solovyev.study.model.partner.Partner" %>
+<%@ page import="org.solovyev.study.model.partner.PartnerRole" %>
 <%@ page import="org.solovyev.study.resources.Config" %>
 <%--
   ~ Copyright (c) 2009-2010. Created by serso.
@@ -21,7 +21,7 @@
 <body>
 <%@ include file="/WEB-INF/include/content_start.h" %>
 <%@ include file="/WEB-INF/include/message_box.h" %>
-<%--@elvariable id="school" type="org.solovyev.study.model.LegalPerson"--%>
+<%--@elvariable id="school" type="org.solovyev.study.model.partner.LegalPerson"--%>
 <c:set var="schoolDetails" value="<%=((Partner)pageContext.getSession().getAttribute("school")).getDetails().get(PartnerRole.school)%>"/>
 <%--@elvariable id="schoolDetails" type="org.solovyev.study.model.SchoolDetails"--%>
 
@@ -56,7 +56,7 @@
 			<%@ include file="/WEB-INF/include/back_button.h" %>
 		</td>
 		<td class="td-form">
-			<input type="button" value="Edit details" id="editButton" onclick="pressButtonWithParams('editButton', '/school/details/edit.do', 'POST', {'backRouteAction': '/school/back.to.management.do'});"/>
+			<input type="button" value="Edit details" id="editButton" onclick="pressButtonWithParams('editButton', '<c:url value="/school/details/edit.do"/>', 'POST', {'backRouteAction': '<c:url value="/school/back.to.management.do"/>'});"/>
 		</td>
 	</tr>
 </table>

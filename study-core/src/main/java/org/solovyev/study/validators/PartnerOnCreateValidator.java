@@ -6,10 +6,10 @@
 
 package org.solovyev.study.validators;
 
-import org.springframework.validation.Errors;
-import org.solovyev.study.model.Partner;
-import org.solovyev.study.model.PartnerRole;
 import org.solovyev.study.model.PartnerType;
+import org.solovyev.study.model.partner.Partner;
+import org.solovyev.study.model.partner.PartnerRole;
+import org.springframework.validation.Errors;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -33,10 +33,10 @@ public class PartnerOnCreateValidator extends DataSourceValidator {
 	@Override
 	public void validate(Object target, Errors errors) {
 		Partner partner = (Partner) target;
-		List<PartnerRole> applyablePartnerRoles = PartnerRole.getApplyablePartnerRoles(partner.getPartnerType());
+		List<PartnerRole> applicablePartnerRoles = PartnerRole.getApplicablePartnerRoles(partner.getPartnerType());
 		for (PartnerRole partnerRole : partner.getPartnerRoles()) {
 			//check if partner role can be applied to partner with current partner type
-			if (!applyablePartnerRoles.contains(partnerRole)) {
+			if (!applicablePartnerRoles.contains(partnerRole)) {
 				errors.rejectValue("partnerRoles", "partnerRole.is.not.applyable.for.partner.type", new Object[]{partnerRole.name(), partner.getPartnerType().name()}, "partnerRole.is.not.applyable.for.partner.type");
 			}
 		}

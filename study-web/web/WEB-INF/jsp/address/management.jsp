@@ -19,14 +19,15 @@
 
 <%--@elvariable id="addressContainer" type="org.solovyev.study.model.AddressContainer"--%>
 
-<form:form commandName="<%=AddressCreateEditController.ADDRESS_CONTAINER_MODEL%>" action="/address/save.do" method="POST">
+<c:url var="action" value='/address/save.do'/>
+<form:form commandName="<%=AddressCreateEditController.ADDRESS_CONTAINER_MODEL%>" action="${action}" method="POST">
 	<table class="table-form">
 		<c:forEach items="${addressContainer.addresses}" var="address" varStatus="addressesStatus">
-			<%--@elvariable id="address" type="org.solovyev.study.model.Address"--%>
+			<%--@elvariable id="address" type="org.solovyev.study.model.address.Address"--%>
 
-			<s:url var="deleteAddressUrl" value="/address/remove.do">
-				<s:param name="index" value="${addressesStatus.index}"/>
-			</s:url>
+			<c:url var="deleteAddressUrl" value="/address/remove.do">
+				<c:param name="index" value="${addressesStatus.index}"/>
+			</c:url>
 
 			<tr class="tr-form">
 				<td class="th-form" colspan="4">
@@ -132,7 +133,7 @@
 				&nbsp;
 			</td>
 			<td class="td-form">
-				<input type="button" value="Add address" id="addAddressButton" onclick="submitForm('addAddressButton', '<%=AddressCreateEditController.ADDRESS_CONTAINER_MODEL%>', '/address/add.do', 'POST')">
+				<input type="button" value="Add address" id="addAddressButton" onclick="submitForm('addAddressButton', '<%=AddressCreateEditController.ADDRESS_CONTAINER_MODEL%>', '<c:url value="/address/add.do"/>', 'POST')">
 			</td>
 			<td class="td-form">
 				&nbsp;

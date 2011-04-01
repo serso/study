@@ -4,11 +4,13 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.partner;
 
 import org.apache.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.solovyev.study.model.PartnerType;
+import org.solovyev.study.model.SchoolDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,35 +33,35 @@ public enum PartnerRole {
 	university(PartnerType.legal_person);
 
 	@NotNull
-	private final PartnerType applyablePartnerType;
+	private final PartnerType applicablePartnerType;
 
 	@Nullable
 	private final Class partnerDetailsClass;
 
-	PartnerRole(@NotNull PartnerType applyablePartnerType) {
-		this(applyablePartnerType, null);
+	PartnerRole(@NotNull PartnerType applicablePartnerType) {
+		this(applicablePartnerType, null);
 	}
 
-	PartnerRole(@NotNull PartnerType applyablePartnerType, @Nullable Class partnerDetailsClass) {
-		this.applyablePartnerType = applyablePartnerType;
+	PartnerRole(@NotNull PartnerType applicablePartnerType, @Nullable Class partnerDetailsClass) {
+		this.applicablePartnerType = applicablePartnerType;
 		this.partnerDetailsClass = partnerDetailsClass;
 	}
 
 	@NotNull
-	public PartnerType getApplyablePartnerType() {
-		return applyablePartnerType;
+	public PartnerType getApplicablePartnerType() {
+		return applicablePartnerType;
 	}
 
-	public boolean isApplyable(PartnerType partnerType) {
-		return this.applyablePartnerType == partnerType;
+	public boolean isApplicable(PartnerType partnerType) {
+		return this.applicablePartnerType == partnerType;
 	}
 
 	@NotNull
-	public static List<PartnerRole> getApplyablePartnerRoles(PartnerType partnerType) {
+	public static List<PartnerRole> getApplicablePartnerRoles(PartnerType partnerType) {
 		final List<PartnerRole> partnerRoles = new ArrayList<PartnerRole>();
 
 		for (PartnerRole partnerRole : PartnerRole.values()) {
-			if (partnerRole.isApplyable(partnerType)) {
+			if (partnerRole.isApplicable(partnerType)) {
 				partnerRoles.add(partnerRole);
 			}
 		}

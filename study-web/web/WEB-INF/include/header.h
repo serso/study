@@ -5,12 +5,11 @@
   --%>
 
 <%-- path to icon --%>
-<link rel="shortcut icon" href="/resources/images/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="<c:url value="/resources/images/favicon.ico"/>" type="image/x-icon"/>
 <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
 <style type="text/css">
-	@import "/resources/css/common.css";
+	@import "<c:url value="/resources/css/common.css"/>";
 </style>
 
-<script type="text/javascript" src="/resources/javascript/common.js"></script>
-<script type="text/javascript" src="/resources/javascript/common.js"></script>
+<script type="text/javascript" src="<c:url value="/resources/javascript/common.js"/>"></script>

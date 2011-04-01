@@ -6,6 +6,7 @@
 
 package org.solovyev.study.controllers.address;
 
+import org.solovyev.study.model.partner.Partner;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,9 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
-import org.solovyev.study.model.Address;
+import org.solovyev.study.model.address.Address;
 import org.solovyev.study.model.AddressContainer;
-import org.solovyev.study.model.Partner;
 import org.solovyev.study.resources.ApplicationContextProvider;
 import org.solovyev.study.resources.Config;
 
@@ -56,6 +56,7 @@ public class AddressCreateEditController extends CommonController {
 				Partner partner = ApplicationContextProvider.getPartnerStack().peek();
 				partner.setAddresses(addressContainer.getAddresses());
 				if (backButton != null) {
+					// todo serso: check if servlet path is correct
 					view = Config.REDIRECT + backButton.getAction();
 				}
 			}
@@ -73,8 +74,8 @@ public class AddressCreateEditController extends CommonController {
 	@RequestMapping(value = "/address/remove.do", method = RequestMethod.POST)
 	public String removeAddress(@ModelAttribute(ADDRESS_CONTAINER_MODEL) AddressContainer addressContainer, @RequestParam Integer index) {
 		if (index >= 0 && index < addressContainer.getAddresses().size()) {
-	   	    addressContainer.getAddresses().remove((int)index);
-			if ( index.equals(addressContainer.getMainAddressIndex()) && !addressContainer.getAddresses().isEmpty() ) {
+			addressContainer.getAddresses().remove((int) index);
+			if (index.equals(addressContainer.getMainAddressIndex()) && !addressContainer.getAddresses().isEmpty()) {
 				addressContainer.setMainAddressIndex(0);
 			}
 		}

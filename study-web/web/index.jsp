@@ -34,6 +34,7 @@
 	<c:set var="onload" value="onload='document.login_form.${usernameInputName}.focus();'"/>
 </c:if>
 <body ${onload}>
+
 <%@ include file="/WEB-INF/include/content_start.h" %>
 
 <%-- if user is not logged in and login failed then we have to print a message --%>
@@ -57,7 +58,7 @@
 <%@ include file="/WEB-INF/include/message_box.h" %>
 
 <c:if test="${applicationUser == null}">
-	<form name="login_form" action="/login.do" method="POST">
+	<form name="login_form" action="login.do" method="POST">
 		<table class="table-form">
 			<tr class="tr-form">
 				<td class="td-form"><label for="${usernameInputName}">User:</label></td>
@@ -75,6 +76,8 @@
 		</table>
 	</form>
 </c:if>
+
 <%@ include file="/WEB-INF/include/content_end.h" %>
+
 </body>
 </html>

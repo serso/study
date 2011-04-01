@@ -160,4 +160,3 @@ public class UserCreateEditController extends CommonController {
 		return currentView;
 	}
 }
-

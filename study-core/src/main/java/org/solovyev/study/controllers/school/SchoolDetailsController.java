@@ -6,6 +6,8 @@
 
 package org.solovyev.study.controllers.school;
 
+import org.solovyev.study.model.partner.Partner;
+import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,8 +16,6 @@ import org.solovyev.common.definitions.MessageImpl;
 import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
-import org.solovyev.study.model.Partner;
-import org.solovyev.study.model.PartnerRole;
 import org.solovyev.study.model.SchoolDetails;
 import org.solovyev.study.resources.ApplicationContextProvider;
 import org.solovyev.study.resources.Config;

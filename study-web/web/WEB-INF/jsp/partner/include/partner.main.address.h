@@ -5,10 +5,10 @@
   ~ For more information, please, contact serso1988@gmail.com.
   --%>
 
-<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.Partner"--%>
+<%--@elvariable id="linkedPartner" type="org.solovyev.study.model.partner.Partner"--%>
 
 <c:set var="mainAddress" value="${partner.mainAddress}"/>
-<%--@elvariable id="mainAddress" type="org.solovyev.study.model.Address"--%>
+<%--@elvariable id="mainAddress" type="org.solovyev.study.model.address.Address"--%>
 
 <c:if test="${mainAddress != null}">
 	<tr class="tr-form">

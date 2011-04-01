@@ -6,6 +6,10 @@
 
 package org.solovyev.study.controllers.partner;
 
+import org.solovyev.study.model.partner.LegalPerson;
+import org.solovyev.study.model.partner.NaturalPerson;
+import org.solovyev.study.model.partner.Partner;
+import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

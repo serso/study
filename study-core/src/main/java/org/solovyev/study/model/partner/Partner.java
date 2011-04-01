@@ -4,14 +4,17 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.partner;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.springmodules.validation.bean.conf.loader.annotation.handler.NotEmpty;
 import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.study.model.DataObject;
+import org.solovyev.study.model.PartnerType;
+import org.solovyev.study.model.User;
+import org.solovyev.study.model.address.Address;
+import org.springmodules.validation.bean.conf.loader.annotation.handler.NotEmpty;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +26,6 @@ import java.util.Map;
  * Time: 10:52:11 PM
  */
 
-@Entity
-@Table(name="partners")
 public abstract class Partner extends DataObject<Integer> {
 
 	@NotNull
@@ -74,9 +75,6 @@ public abstract class Partner extends DataObject<Integer> {
 		}
 	}
 
-	@Id
-	@GeneratedValue
-	@Column(name="partner_id")
 	@Override
 	public Integer getId() {
 		return super.getId();
@@ -105,8 +103,8 @@ public abstract class Partner extends DataObject<Integer> {
 	}
 
 	@NotNull
-	public List<PartnerRole> getApplyablePartnerRoles() {
-		return PartnerRole.getApplyablePartnerRoles(getPartnerType());
+	public List<PartnerRole> getApplicablePartnerRoles() {
+		return PartnerRole.getApplicablePartnerRoles(getPartnerType());
 	}
 
 	public boolean isActsAs(@NotNull PartnerRole partnerRole) {

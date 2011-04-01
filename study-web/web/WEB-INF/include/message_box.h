@@ -7,7 +7,9 @@
 
 <%--@elvariable id="messageCollector" type="org.solovyev.study.resources.MessageCollector"--%>
 <c:if test="${messageCollector != null && fn:length(messageCollector.messages) > 0}">
+
 	<table class="message-box-${messageCollector.errorLevel}">
+
 		<c:forEach items="${messageCollector.messages}" var="message">
 			<%--@elvariable id="message" type="org.solovyev.common.definitions.Message"--%>
 			<c:if test="${message != null}">
@@ -18,7 +20,9 @@
 				</tr>
 			</c:if>
 		</c:forEach>
-		${messageCollector.clear()}
+
+		<% ((MessageCollector) pageContext.getAttribute("messageCollector")).clear(); %>
 	</table>
+
 	<br>
 </c:if>

@@ -6,17 +6,20 @@
 
 package org.solovyev.study.controllers;
 
+import org.solovyev.common.html.Button;
+import org.solovyev.study.resources.ApplicationContextProvider;
+import org.solovyev.study.resources.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.solovyev.common.html.Button;
-import org.solovyev.study.resources.ApplicationContextProvider;
-import org.solovyev.study.resources.Config;
+import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
@@ -30,10 +33,12 @@ import java.util.Date;
  */
 
 @Controller
-public class CommonController {
+public class CommonController implements ApplicationContextAware {
 
 	protected static final String BACK_BUTTON_MODEL = "backButton";
 	private static final String BACK_ACTION_URL_PREFIX = "/back.";
+
+	protected WebApplicationContext applicationContext;
 
 	@ModelAttribute(value = BACK_BUTTON_MODEL)
 	public Button getBackButton(HttpServletRequest req) {
@@ -50,9 +55,9 @@ public class CommonController {
 
 	protected static void addBackButtonToModel(String backRouteAction, Model model) {
 		if (backRouteAction != null) {
-			Button backbButton = new Button("Back", backRouteAction);
-			model.addAttribute(BACK_BUTTON_MODEL, backbButton);
-			ApplicationContextProvider.getBackButtonStack().push(backbButton);
+			final Button backButton = new Button("Back", backRouteAction);
+			model.addAttribute(BACK_BUTTON_MODEL, backButton);
+			ApplicationContextProvider.getBackButtonStack().push(backButton);
 		}
 	}
 
@@ -79,5 +84,10 @@ public class CommonController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat(Config.DATE_PATTERN);
 		dateFormat.setLenient(false);
 		binder.registerCustomEditor(Date.class, null, new CustomDateEditor(dateFormat, true));
+	}
+
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		//noinspection AccessStaticViaInstance
+		this.applicationContext = (WebApplicationContext)applicationContext;
 	}
 }

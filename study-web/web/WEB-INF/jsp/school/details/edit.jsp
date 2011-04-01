@@ -1,5 +1,5 @@
-<%@ page import="org.solovyev.study.model.Partner" %>
-<%@ page import="org.solovyev.study.model.PartnerRole" %>
+<%@ page import="org.solovyev.study.model.partner.Partner" %>
+<%@ page import="org.solovyev.study.model.partner.PartnerRole" %>
 <%@ page import="org.solovyev.study.controllers.school.SchoolDetailsController" %>
 <%--
   ~ Copyright (c) 2009-2010. Created by serso.
@@ -23,7 +23,7 @@
 <%@ include file="/WEB-INF/include/content_start.h" %>
 <%@ include file="/WEB-INF/include/message_box.h" %>
 
-<%--@elvariable id="school" type="org.solovyev.study.model.LegalPerson"--%>
+<%--@elvariable id="school" type="org.solovyev.study.model.partner.LegalPerson"--%>
 <%--@elvariable id="schoolDetails" type="org.solovyev.study.model.SchoolDetails"--%>
 
 <form:form commandName="<%=SchoolDetailsController.SCHOOL_DETAILS_MODEL%>">
@@ -56,7 +56,7 @@
 				<%@ include file="/WEB-INF/include/back_button.h" %>
 			</td>
 			<td class="td-form">
-				<input type="submit" value="Save" id="saveButton" onclick="submitForm('saveButton', '<%=SchoolDetailsController.SCHOOL_DETAILS_MODEL%>', '/school/details/save.do', 'POST');"/>
+				<input type="submit" value="Save" id="saveButton" onclick="submitForm('saveButton', '<%=SchoolDetailsController.SCHOOL_DETAILS_MODEL%>', '<c:url value="/school/details/save.do"/>', 'POST');"/>
 			</td>
 			<td class="td-form">
 				&nbsp;

@@ -5,7 +5,7 @@
   ~ For more information, please, contact serso1988@gmail.com.
   --%>
 
-<%--@elvariable id="partner" type="org.solovyev.study.model.NaturalPerson"--%>
+<%--@elvariable id="partner" type="org.solovyev.study.model.partner.NaturalPerson"--%>
 
 
 <c:set var="male" value="<%=Gender.male.name()%>"/>
