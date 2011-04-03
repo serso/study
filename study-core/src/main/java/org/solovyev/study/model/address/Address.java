@@ -24,8 +24,6 @@ import java.io.Serializable;
  * Date: Apr 11, 2010
  * Time: 5:32:30 PM
  */
-
-
 public class Address extends Identity<Integer> implements Serializable {
 
 	private Integer partnerId;

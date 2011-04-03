@@ -2,8 +2,10 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-	<class name="org.solovyev.study.model.address.Address" table="addresses" schema="study" entity-name="address">
+
+<hibernate-mapping package="org.solovyev.study.model.address" schema="study">
+
+	<class name="Address" table="addresses" entity-name="address">
 
 		<id name="id" type="java.lang.Integer" column="address_id">
 			<generator class="native"/>

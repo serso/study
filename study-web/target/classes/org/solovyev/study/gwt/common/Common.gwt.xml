@@ -5,6 +5,7 @@
 	<inherits name='org.solovyev.Base'/>
 
 	<entry-point class='org.solovyev.study.gwt.common.client.Common'/>
+
 	<servlet path="/CommonRemoteService" class="org.solovyev.study.gwt.common.server.CommonRemoteServiceImpl"/>
 
 </module>

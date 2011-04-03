@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<property name="connection.url">jdbc:mysql://localhost:3306</property>
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.username">study_user</property>
+		<property name="connection.password">study_user</property>
+
+		<mapping resource="org/solovyev/study/model/address/Address.hbt.xml"/>
+		<mapping resource="org/solovyev/study/model/partner/Partner.hbt.xml"/>
+
+	</session-factory>
+
+</hibernate-configuration>
