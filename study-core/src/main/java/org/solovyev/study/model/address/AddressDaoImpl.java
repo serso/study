@@ -6,6 +6,7 @@
 
 package org.solovyev.study.model.address;
 
+import org.hibernate.Session;
 import org.jetbrains.annotations.NotNull;
 import org.solovyev.common.utils.StringsUtils;
 import org.solovyev.study.model.AddressType;
@@ -50,37 +51,31 @@ public class AddressDaoImpl extends CustomHibernateDaoSupport implements Address
 	}
 
 	public int delete(@NotNull Integer partnerId) {
+		/*
+
 		MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
 
 		SQLBuilder sqlBuilder = new SQLBuilder().delete().from().tables(Config.DATABASE_SCHEMA, Tables.addresses.name()).where();
 		sqlBuilder.equalsCondition(null, addresses.partner_id.name(), partnerId, mapSqlParameterSource);
 
-		getHibernateTemplate().delete("form address");
+  		*/
 
-		return getSimpleJdbcTemplate().update(sqlBuilder.toString(), mapSqlParameterSource);
+		// todo serso: reimplement
+		getHibernateTemplate().delete("from address as a where a.partnerId = ? ", partnerId);
+
+		//return getSimpleJdbcTemplate().update(sqlBuilder.toString(), mapSqlParameterSource);
+		return 0;
 	}
 
 	public void insert(@NotNull Partner partner) {
-		MapSqlParameterSource mapSqlParameterSource;
-		SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(getJdbcTemplate()).withSchemaName(Config.DATABASE_SCHEMA).withTableName(Tables.addresses.name());
-		simpleJdbcInsert.usingColumns(StringsUtils.toString(addresses.values()));
+		final Session session = getHibernateTemplate().getSessionFactory().getCurrentSession();
+		session.beginTransaction();
 
 		for (Address address : partner.getAddresses()) {
-			mapSqlParameterSource = new MapSqlParameterSource();
-			mapSqlParameterSource.addValue(addresses.partner_id.name(), partner.getId());
-			mapSqlParameterSource.addValue(addresses.country.name(), address.getCountry());
-			mapSqlParameterSource.addValue(addresses.address_type.name(), address.getAddressType().name());
-			mapSqlParameterSource.addValue(addresses.city.name(), address.getCity());
-			mapSqlParameterSource.addValue(addresses.email.name(), address.getEmail());
-			mapSqlParameterSource.addValue(addresses.house.name(), address.getHouse());
-			mapSqlParameterSource.addValue(addresses.apartment.name(), address.getApartment());
-			mapSqlParameterSource.addValue(addresses.phone_number.name(), address.getPhoneNumber());
-			mapSqlParameterSource.addValue(addresses.postal_code.name(), address.getPostalCode());
-			mapSqlParameterSource.addValue(addresses.street.name(), address.getStreet());
-			mapSqlParameterSource.addValue(addresses.is_main.name(), String.valueOf(address.isMain()));
-			simpleJdbcInsert.execute(mapSqlParameterSource);
+			session.save(address);
 		}
 
+		session.getTransaction().commit();
 	}
 
 		// todo serso: remove
