@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Copyright (c) 2009-2010. Created by serso.
+  ~
+  ~ For more information, please, contact serso1988@gmail.com.
+  -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="connectionProperties" value="useUnicode=true;characterEncoding=utf8"/>
+	</bean>
+
+
+	<!--	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+
+		<property name="dataSource" ref="dataSource"/>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+
+		<property name="packagesToScan">
+			<list>
+				<value>org.solovyev</value>
+			</list>
+		</property>
+
+		<property name="annotatedPackages">
+			<list>
+				<value>org.solovyev.study.model.address</value>
+			</list>
+		</property>
+
+	</bean>-->
+
+	<!--	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+		<property name="dataSource" ref="dataSource"/>
+
+		<property name="mappingLocations">
+			<list>
+				<value>classpath:org/solovyev/study/model/address/Address.hbt.xml</value>
+				<value>classpath:org/solovyev/study/model/partner/Partner.hbt.xml</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>-->
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+	</bean>
+
+	<context:property-placeholder location="jdbc.properties"/>
+
+</beans>
