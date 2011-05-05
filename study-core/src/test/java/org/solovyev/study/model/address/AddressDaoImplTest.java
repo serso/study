@@ -1,27 +1,34 @@
 package org.solovyev.study.model.address;
 
-import junit.framework.TestCase;
-import org.solovyev.study.CommonTestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.solovyev.study.model.AddressType;
 import org.solovyev.study.model.partner.NaturalPerson;
 import org.solovyev.study.model.partner.Partner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
  * User: serso
  * Date: 4/2/11
  * Time: 8:31 PM
  */
-public class AddressDaoImplTest extends CommonTestCase {
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = "classpath:test-context.xml")
+
+public class AddressDaoImplTest /*extends CommonTestCase*/ {
 
 	final AddressDaoImpl addressDao = new AddressDaoImpl();
 
-	@Override
+/*	@Override
 	public void setUp() throws Exception {
 		super.setUp();
 
 		addressDao.setSessionFactory(sessionFactory);
-	}
+	}*/
 
+	@Test
 	public void testLoad() throws Exception {
 		addressDao.load(1);
 		addressDao.load(2);

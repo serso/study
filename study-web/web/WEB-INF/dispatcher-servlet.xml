@@ -30,10 +30,10 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
+	<import resource="persistence.xml"/>
+
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
-
-	<import resource="persistence.xml"/>
 
 	<import resource="security.xml"/>
 
