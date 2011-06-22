@@ -7,11 +7,7 @@
 	<session-factory>
 
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
-
-		<property name="connection.url">jdbc:mysql://localhost:3306</property>
-		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.username">study_user</property>
-		<property name="connection.password">study_user</property>
+        <property name="show_sq">true</property>
 
 		<mapping resource="org/solovyev/study/model/address/Address.hbt.xml"/>
 		<mapping resource="org/solovyev/study/model/partner/Partner.hbt.xml"/>
