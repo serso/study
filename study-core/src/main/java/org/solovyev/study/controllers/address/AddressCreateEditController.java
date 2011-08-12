@@ -9,10 +9,7 @@ package org.solovyev.study.controllers.address;
 import org.solovyev.study.model.partner.Partner;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.model.address.Address;
@@ -45,7 +42,7 @@ public class AddressCreateEditController extends CommonController {
 	public String saveAddresses(@ModelAttribute(ADDRESS_CONTAINER_MODEL) AddressContainer addressContainer, BindingResult result, @ModelAttribute(BACK_BUTTON_MODEL) Button backButton) {
 		String view = null;
 
-		this.beanValidator.validate(addressContainer, result);
+		this.validator.validate(addressContainer, result);
 
 		if (!result.hasErrors()) {
 

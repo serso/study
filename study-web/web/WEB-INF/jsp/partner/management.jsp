@@ -90,7 +90,7 @@
 									<td>
 										<c:forEach items="${partner.linkedUsers}" var="linkedUser"
 												   varStatus="linkedUsersStatus">
-											<%--@elvariable id="linkedUser" type="org.solovyev.study.model.User"--%>
+											<%--@elvariable id="linkedUser" type="org.solovyev.study.model.user.User"--%>
 											<c:url value="/user/view.do" var="viewUserUrl">
 												<c:param name="userId" value="${linkedUser.id}"/>
 											</c:url>

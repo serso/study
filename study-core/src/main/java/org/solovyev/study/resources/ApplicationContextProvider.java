@@ -6,6 +6,7 @@
 
 package org.solovyev.study.resources;
 
+import org.solovyev.study.model.user.User;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.model.partner.Partner;
-import org.solovyev.study.model.User;
 
 import java.util.Stack;
 

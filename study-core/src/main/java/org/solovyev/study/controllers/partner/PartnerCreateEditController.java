@@ -6,10 +6,8 @@
 
 package org.solovyev.study.controllers.partner;
 
-import org.solovyev.study.model.partner.LegalPerson;
-import org.solovyev.study.model.partner.NaturalPerson;
-import org.solovyev.study.model.partner.Partner;
-import org.solovyev.study.model.partner.PartnerRole;
+import org.solovyev.study.model.partner.*;
+import org.solovyev.study.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,7 +91,7 @@ public class PartnerCreateEditController extends CommonController {
 	@RequestMapping(value = "/partner/save.new.do", method = RequestMethod.POST)
 	public String savePartner(@ModelAttribute(PARTNER_MODEL) Partner partner, BindingResult result, Model model) {
 		String view = null;
-		this.beanValidator.validate(partner, result);
+		this.validator.validate(partner, result);
 
 		new PartnerOnCreateValidator(dataSource).validate(partner, result);
 
@@ -127,7 +125,7 @@ public class PartnerCreateEditController extends CommonController {
 	public String saveEditedPartner(@ModelAttribute(PARTNER_MODEL) Partner partner, BindingResult result, @ModelAttribute(BACK_BUTTON_MODEL) Button backButton) {
 		String view;
 
-		this.beanValidator.validate(partner, result);
+		this.validator.validate(partner, result);
 		new PartnerOnCreateValidator(dataSource).validate(partner, result);
 
 		if (!result.hasErrors()) {

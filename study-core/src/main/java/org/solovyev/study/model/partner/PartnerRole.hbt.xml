@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<typedef class="org.solovyev.study.db.GenericEnumUserType" name="org.solovyev.study.model.partner.PartnerRole">
+		<param name="enumClass">org.solovyev.study.model.partner.PartnerRole</param>
+	</typedef>
+</hibernate-mapping>

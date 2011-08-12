@@ -15,7 +15,6 @@ import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 

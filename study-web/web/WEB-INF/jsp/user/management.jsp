@@ -1,5 +1,5 @@
 <%@ page import="org.solovyev.study.controllers.user.UserSearchController" %>
-<%@ page import="org.solovyev.study.model.UserRole" %>
+<%@ page import="org.solovyev.study.model.user.UserRole" %>
 <%@ page import="org.solovyev.study.resources.Config" %>
 <%--
   ~ Copyright (c) 2009-2010. Created by serso.
@@ -105,7 +105,7 @@
 						</thead>
 						<tbody>
 						<c:forEach items="${users}" var="user" varStatus="userStatus">
-							<%--@elvariable id="user" type="org.solovyev.study.model.User"--%>
+							<%--@elvariable id="user" type="org.solovyev.study.model.user.User"--%>
 							<tr>
 								<td>${userStatus.index + 1}</td>
 								<td>

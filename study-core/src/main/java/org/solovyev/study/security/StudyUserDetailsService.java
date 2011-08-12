@@ -6,14 +6,14 @@
 
 package org.solovyev.study.security;
 
+import org.solovyev.study.model.user.User;
+import org.solovyev.study.model.user.UserSearchParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.solovyev.study.model.User;
-import org.solovyev.study.model.UserSearchParams;
 import org.solovyev.study.services.UserService;
 
 import javax.sql.DataSource;

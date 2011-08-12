@@ -1,7 +1,8 @@
-package org.solovyev.study.model;
+package org.solovyev.study.model.user;
 
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.study.model.data_object.DataObject;
 import org.solovyev.study.model.partner.Partner;
 import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,8 +21,6 @@ import java.util.List;
  */
 
 public class User extends DataObject<Integer> implements Cloneable, Serializable, UserDetails {
-
-	private Integer id = null;
 
 	@NotBlank
 	@Length(max = 255)

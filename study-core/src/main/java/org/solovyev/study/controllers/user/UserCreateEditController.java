@@ -6,6 +6,8 @@
 
 package org.solovyev.study.controllers.user;
 
+import org.solovyev.study.model.user.User;
+import org.solovyev.study.model.user.UserSearchParams;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +18,6 @@ import org.solovyev.common.html.Button;
 import org.solovyev.common.html.HtmlUtils;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.model.DataObjectAction;
-import org.solovyev.study.model.User;
-import org.solovyev.study.model.UserSearchParams;
 import org.solovyev.study.resources.ApplicationContextProvider;
 import org.solovyev.study.resources.Config;
 import org.solovyev.study.resources.MessageCodes;
@@ -56,7 +56,7 @@ public class UserCreateEditController extends CommonController {
 	@RequestMapping(value = "/user/save.new.do", method = RequestMethod.POST)
 	public String saveUser(@ModelAttribute(USER_MODEL) User user, BindingResult result, Model model) {
 		String view = null;
-		this.beanValidator.validate(user, result);
+		this.validator.validate(user, result);
 		new UserOnCreateValidator(dataSource).validate(user, result);
 		if (!result.hasErrors()) {
 			//no errors - let's add new user
@@ -103,7 +103,7 @@ public class UserCreateEditController extends CommonController {
 	public String saveEditedUser(@ModelAttribute(USER_MODEL) User user, BindingResult result, @ModelAttribute(BACK_BUTTON_MODEL) Button backButton) {
 		String view;
 
-		this.beanValidator.validate(user, result);
+		this.validator.validate(user, result);
 		new UserOnCreateValidator(dataSource).validate(user, result);
 
 		if (!result.hasErrors()) {

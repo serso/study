@@ -16,7 +16,7 @@
 		</td>
 	</tr>
 	<c:if test="${applicationUser != null}">
-		<%--@elvariable id="applicationUser" type="org.solovyev.study.model.User"--%>
+		<%--@elvariable id="applicationUser" type="org.solovyev.study.model.user.User"--%>
 	<tr class="tr-content">
 		<td class="td-content">
 			<c:url var="myProfileUrl" value="/user/view.do">

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<union-subclass name="org.solovyev.study.model.user.User" extends="org.solovyev.study.model.data_object.DataObject" table="users">
+
+		<property name="id" column="user_id"/>
+
+		<property name="email" column="email" type="java.lang.String"/>
+
+		<property name="username" column="username" type="java.lang.String"/>
+
+		<property name="password" column="password" type="java.lang.String"/>
+
+		<property name="enabled" column="enabled" type="java.lang.Boolean"/>
+
+		<set name="linkedPartners" table="users_partners_link">
+			<key column="user_id"/>
+			<many-to-many column="partner_id" class="org.solovyev.study.model.partner.Partner"/>
+		</set>
+
+	</union-subclass>
+
+</hibernate-mapping>

@@ -4,12 +4,13 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.data_object;
 
 import org.jetbrains.annotations.Nullable;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotNull;
 import org.solovyev.common.definitions.Identity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Date;
  * Date: Apr 11, 2010
  * Time: 5:29:12 PM
  */
-public class DataObject<T> extends Identity<T> {
+public class DataObject<T extends Serializable> extends Identity<T> {
 
 	private Date creationDate;
 
@@ -27,6 +28,9 @@ public class DataObject<T> extends Identity<T> {
 
 	public DataObject(T id) {
 		super(id);
+	}
+
+	public DataObject() {
 	}
 
 	@NotNull

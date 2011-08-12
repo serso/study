@@ -6,6 +6,7 @@
 
 package org.solovyev.study.controllers.partner;
 
+import org.solovyev.study.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.model.PartnerSearchParams;
-import org.solovyev.study.model.User;
 import org.solovyev.study.resources.ApplicationContextProvider;
 import org.solovyev.study.services.PartnerService;
 

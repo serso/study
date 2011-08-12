@@ -21,7 +21,7 @@
 <%@ include file="/WEB-INF/include/content_start.h" %>
 <%@ include file="/WEB-INF/include/message_box.h" %>
 
-<%--@elvariable id="user" type="org.solovyev.study.model.User"--%>
+<%--@elvariable id="user" type="org.solovyev.study.model.user.User"--%>
 
 <c:set var="linkedPartner" value="${null}"/>
 <c:if test="${fn:length(user.linkedPartners) > 0}">

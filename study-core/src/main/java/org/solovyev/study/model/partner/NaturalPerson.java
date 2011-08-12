@@ -43,6 +43,9 @@ public class NaturalPerson extends Partner {
 		super(id);
 	}
 
+	public NaturalPerson() {
+	}
+
 	@NotNull
 	public PartnerType getPartnerType() {
 		return PartnerType.natural_person;

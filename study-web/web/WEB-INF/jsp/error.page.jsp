@@ -1,5 +1,5 @@
-<%@ page import="org.solovyev.study.model.User" %>
-<%@ page import="org.solovyev.study.model.UserRole" %>
+<%@ page import="org.solovyev.study.model.user.User" %>
+<%@ page import="org.solovyev.study.model.user.UserRole" %>
 <%--
   ~ Copyright (c) 2009-2010. Created by serso.
   ~

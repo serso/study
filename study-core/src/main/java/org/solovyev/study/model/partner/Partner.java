@@ -9,10 +9,10 @@ package org.solovyev.study.model.partner;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.utils.CollectionsUtils;
-import org.solovyev.study.model.DataObject;
+import org.solovyev.study.model.data_object.DataObject;
 import org.solovyev.study.model.PartnerType;
-import org.solovyev.study.model.User;
 import org.solovyev.study.model.address.Address;
+import org.solovyev.study.model.user.User;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.NotEmpty;
 
 import java.util.ArrayList;
@@ -45,6 +45,9 @@ public abstract class Partner extends DataObject<Integer> {
 	@NotNull
 	private Map<PartnerRole, Object> details = new HashMap<PartnerRole, Object>();
 
+	public Partner() {
+	}
+
 	/**
 	 * Method has to return current type of partner. This method is used to
 	 * behave different in case of partner type.
@@ -73,11 +76,6 @@ public abstract class Partner extends DataObject<Integer> {
 				this.details.put(partnerRole, partnerDetails);
 			}
 		}
-	}
-
-	@Override
-	public Integer getId() {
-		return super.getId();
 	}
 
 	@NotNull

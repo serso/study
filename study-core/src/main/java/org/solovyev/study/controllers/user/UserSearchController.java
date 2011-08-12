@@ -6,6 +6,8 @@
 
 package org.solovyev.study.controllers.user;
 
+import org.solovyev.study.model.user.User;
+import org.solovyev.study.model.user.UserSearchParams;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

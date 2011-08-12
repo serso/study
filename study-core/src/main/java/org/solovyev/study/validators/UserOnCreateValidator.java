@@ -6,9 +6,9 @@
 
 package org.solovyev.study.validators;
 
+import org.solovyev.study.model.user.User;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
-import org.solovyev.study.model.User;
 import org.solovyev.study.services.UserService;
 
 import javax.sql.DataSource;

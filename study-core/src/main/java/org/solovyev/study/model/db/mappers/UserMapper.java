@@ -6,7 +6,7 @@
 
 package org.solovyev.study.model.db.mappers;
 
-import org.solovyev.study.model.User;
+import org.solovyev.study.model.user.User;
 import org.solovyev.study.model.db.tables.users;
 import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
 
