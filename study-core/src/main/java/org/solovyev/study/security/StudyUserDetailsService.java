@@ -6,17 +6,15 @@
 
 package org.solovyev.study.security;
 
+import org.jetbrains.annotations.NotNull;
 import org.solovyev.study.model.user.User;
-import org.solovyev.study.model.user.UserSearchParams;
+import org.solovyev.study.model.user.UserBo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.solovyev.study.services.UserService;
-
-import javax.sql.DataSource;
 
 /**
  * User: serso
@@ -27,21 +25,20 @@ import javax.sql.DataSource;
 @Service
 public class StudyUserDetailsService implements UserDetailsService {
 
-	private DataSource dataSource;
+	@Autowired
+	@NotNull
+	private UserBo userBo;
 
 	@Override
 	public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException, DataAccessException {
-	    UserSearchParams userSearchParams = new UserSearchParams();
-		userSearchParams.setUsername(s);
-		UserDetails userDetails = UserService.loadUser(userSearchParams, dataSource );
+		UserDetails userDetails = userBo.load(s);
 		if (userDetails == null) {
 			userDetails = new User();
 		}
 		return userDetails;
 	}
 
-	@Autowired
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
+	public void setUserBo(@NotNull UserBo userBo) {
+		this.userBo = userBo;
 	}
 }
