@@ -4,8 +4,8 @@
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<typedef class="org.solovyev.study.db.GenericEnumUserType" name="org.solovyev.study.model.partner.PartnerRole">
-		<param name="enumClass">org.solovyev.study.model.partner.PartnerRole</param>
+	<typedef class="org.solovyev.study.db.GenericEnumUserType" name="org.solovyev.study.model.user.UserRole" >
+		<param name="enumClass">org.solovyev.study.model.user.UserRole</param>
 	</typedef>
 
 </hibernate-mapping>

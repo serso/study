@@ -32,6 +32,10 @@ public enum UserRole implements GrantedAuthority {
 
 	private PartnerRole linkedPartnerRole;
 
+	UserRole() {
+		this.linkedPartnerRole = null;
+	}
+
 	UserRole(PartnerRole linkedPartnerRole) {
 		this.linkedPartnerRole = linkedPartnerRole;
 	}

@@ -1,9 +1,10 @@
 package org.solovyev.study.model.user;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * User: serso
@@ -21,9 +22,9 @@ public class UserBoImpl implements UserBo {
 		this.userDao = userDao;
 	}
 
-	@Nullable
+	@NotNull
 	@Override
-	public User load(@NotNull String userName) {
+	public List<User> load(@NotNull String userName) {
 		return userDao.load(userName);
 	}
 }

@@ -93,7 +93,7 @@ public abstract class Partner extends DataObject<Integer> {
 	}
 
 	public void setPartnerRoles(@Nullable List<PartnerRole> partnerRoles) {
-		this.partnerRoles = CollectionsUtils.setNotNull(partnerRoles, this.partnerRoles);
+		this.partnerRoles = (List<PartnerRole>)CollectionsUtils.setNotNull(partnerRoles, this.partnerRoles);
 	}
 
 	public boolean isNaturalPerson() {
@@ -115,7 +115,7 @@ public abstract class Partner extends DataObject<Integer> {
 	}
 
 	public void setLinkedUsers(@Nullable List<User> linkedUsers) {
-		this.linkedUsers = CollectionsUtils.setNotNull(linkedUsers, this.linkedUsers);
+		this.linkedUsers = (List<User>)CollectionsUtils.setNotNull(linkedUsers, this.linkedUsers);
 	}
 
 	@NotNull

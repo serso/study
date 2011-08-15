@@ -4,7 +4,7 @@
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class name="org.solovyev.common.definitions.Identity">
+	<class name="org.solovyev.common.definitions.Identity" entity-name="identity">
 
 		<id name="id" type="java.lang.Integer">
 			<generator class="native"/>

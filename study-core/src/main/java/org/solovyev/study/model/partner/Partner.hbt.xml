@@ -2,6 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC
 		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
 <hibernate-mapping>
 
 	<class name="org.solovyev.study.model.partner.Partner" table="partners" entity-name="partner">
@@ -14,17 +15,22 @@
 
 		<property name="creationDate" type="java.util.Date" column="creation_date"/>
 		<property name="creatorId" type="java.lang.Integer" column="creator_id"/>
-		<property name="modificationDate" type="java.util.Date" column="modification_date"/>
-		<set name="partnerRoles" table="partners_partner_roles_link">
-			<key column="partner_id"/>
-			<many-to-many class="org.solovyev.study.db.GenericEnumUserType">
 
-					</many-to-many>
-		</set>
+		<property name="modificationDate" type="java.util.Date" column="modification_date"/>
+
+		<bag name="partnerRoles" table="partners_partner_roles_link">
+			<key column="partner_id"/>
+			<element column="partner_role" type="org.solovyev.study.model.partner.PartnerRole"/>
+		</bag>
+
+		<bag name="addresses" table="addresses">
+			<key column="partner_id"/>
+			<one-to-many entity-name="address"/>
+		</bag>
 
 		<subclass name="org.solovyev.study.model.partner.LegalPerson" discriminator-value="legal_person">
 			<property name="companyName" type="java.lang.String" column="company_name"/>
-			<property name="incorporationDate" type="java.util.Date" column="creation_date"/>
+			<property name="incorporationDate" type="java.util.Date" column="incorporation_date"/>
 		</subclass>
 
 		<subclass name="org.solovyev.study.model.partner.NaturalPerson" discriminator-value="natural_person">

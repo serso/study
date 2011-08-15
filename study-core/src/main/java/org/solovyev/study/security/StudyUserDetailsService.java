@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * User: serso
  * Date: Apr 1, 2010
@@ -31,14 +33,17 @@ public class StudyUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException, DataAccessException {
-		UserDetails userDetails = userBo.load(s);
-		if (userDetails == null) {
-			userDetails = new User();
-		}
-		return userDetails;
-	}
+		final List<User> users = userBo.load(s);
 
-	public void setUserBo(@NotNull UserBo userBo) {
-		this.userBo = userBo;
+		assert users.size() <= 1;
+
+		final UserDetails result;
+		if (users.isEmpty()) {
+			result = new User();
+		} else {
+			result = users.get(0);
+		}
+
+		return result;
 	}
 }

@@ -4,9 +4,17 @@
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-	<union-subclass name="org.solovyev.study.model.user.User" extends="org.solovyev.study.model.data_object.DataObject" table="users" entity-name="users">
+	<class name="org.solovyev.study.model.user.User" table="users" entity-name="user" catalog="study">
 
-		<property name="id" column="user_id"/>
+		<id name="id" column="user_id" type="java.lang.Integer">
+			<generator class="native"/>
+		</id>
+
+		<property name="creationDate" type="java.util.Date" column="creation_date"/>
+
+		<property name="creatorId" type="java.lang.Integer" column="creator_id"/>
+
+		<property name="modificationDate" type="java.util.Date" column="modification_date"/>
 
 		<property name="email" column="email" type="java.lang.String"/>
 
@@ -16,11 +24,16 @@
 
 		<property name="enabled" column="enabled" type="java.lang.Boolean"/>
 
-		<set name="linkedPartners" table="users_partners_link">
+		<bag name="linkedPartners" table="users_partners_link" lazy="false">
 			<key column="user_id"/>
-			<many-to-many column="partner_id" class="org.solovyev.study.model.partner.Partner"/>
-		</set>
+			<many-to-many column="partner_id" entity-name="partner"/>
+		</bag>
 
-	</union-subclass>
+		<bag name="userRoles" table="users_user_roles_link" lazy="false">
+			<key column="user_id"/>
+			<element column="user_role" type="org.solovyev.study.model.user.UserRole"/>
+		</bag>
+
+	</class>
 
 </hibernate-mapping>

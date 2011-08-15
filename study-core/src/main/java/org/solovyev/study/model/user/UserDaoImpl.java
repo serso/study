@@ -1,9 +1,10 @@
 package org.solovyev.study.model.user;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import org.solovyev.study.model.CustomHibernateDaoSupport;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * User: serso
@@ -15,9 +16,9 @@ import org.springframework.stereotype.Repository;
 @Repository("userDao")
 public class UserDaoImpl extends CustomHibernateDaoSupport implements UserDao {
 
-	@Nullable
+	@NotNull
 	@Override
-	public User load(@NotNull String userName) {
-		return (User)getHibernateTemplate().find("from users as u where u.username = ? ", userName);
+	public List<User> load(@NotNull String userName) {
+		return (List<User>)getHibernateTemplate().find("from user as u where u.username = ? ", userName);
 	}
 }

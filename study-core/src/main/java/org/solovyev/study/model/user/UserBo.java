@@ -1,7 +1,8 @@
 package org.solovyev.study.model.user;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * User: serso
@@ -10,6 +11,6 @@ import org.jetbrains.annotations.Nullable;
  */
 public interface UserBo {
 
-		@Nullable
-		User load(@NotNull String userName);
+		@NotNull
+		List<User> load(@NotNull String userName);
 }

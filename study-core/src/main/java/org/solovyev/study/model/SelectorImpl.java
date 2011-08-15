@@ -53,7 +53,7 @@ public class SelectorImpl implements Selector {
 
 	@Override
 	public void setIndexes(@Nullable List<Integer> indexes) {
-		this.indexes = CollectionsUtils.setNotNull(indexes, this.indexes);
+		this.indexes = (List<Integer>)CollectionsUtils.setNotNull(indexes, this.indexes);
 	}
 
 	@NotNull
