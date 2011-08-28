@@ -54,7 +54,7 @@ insert into user_roles values('school_employee');
 
 
 insert into users values (1, 'system', '', '', now(), 1, null, 'false');
-insert into users values (2, 'serso', 'serso1988@gmail.com', 'f03df3dff8f672ea78015bb2fe84a419', now(), 1, null, 'true');
+insert into users values (2, 'serso', 'se.solovyev@gmail.com', 'f03df3dff8f672ea78015bb2fe84a419', now(), 1, null, 'true');
 insert into users values (3, 'andrew.feoktistov', 'andrew.feoktistov@gmail.com', '25a043732281a2a5324a6ae105508ba3', now(), 1, null, 'true');
 insert into users values (4, 'vitken', 'vitken@gmail.com', '8c2642f335f8c78b9ca4b18a884faf54', now(), 1, null, 'true');
 insert into users values (5, 'ka.serova', 'ka.serova@gmail.com', 'e1b2c5f57bdaf3a59fcdb5488a116b98', now(), 1, null, 'true');
