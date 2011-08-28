@@ -4,7 +4,7 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.user;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -31,6 +31,10 @@ public enum UserRole implements GrantedAuthority {
 	school_employee(PartnerRole.school_employee);
 
 	private PartnerRole linkedPartnerRole;
+
+	UserRole() {
+		this.linkedPartnerRole = null;
+	}
 
 	UserRole(PartnerRole linkedPartnerRole) {
 		this.linkedPartnerRole = linkedPartnerRole;

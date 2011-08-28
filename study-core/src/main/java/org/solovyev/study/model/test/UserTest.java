@@ -12,7 +12,7 @@ package org.solovyev.study.model.test;
  */
 
 import junit.framework.*;
-import org.solovyev.study.model.User;
+import org.solovyev.study.model.user.User;
 
 import java.util.Date;
 

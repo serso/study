@@ -88,7 +88,7 @@ public class PartnerSearchParams extends Identity<Integer> implements StrictSear
 	}
 
 	public void setPartnerTypes(@Nullable List<PartnerType> partnerTypes) {
-		this.partnerTypes = CollectionsUtils.setNotNull(partnerTypes, this.partnerTypes);
+		this.partnerTypes = (List<PartnerType>)CollectionsUtils.setNotNull(partnerTypes, this.partnerTypes);
 	}
 
 	@NotNull
@@ -97,7 +97,7 @@ public class PartnerSearchParams extends Identity<Integer> implements StrictSear
 	}
 
 	public void setGenders(@Nullable List<Gender> genders) {
-		this.genders = CollectionsUtils.setNotNull(genders, this.genders);
+		this.genders = (List<Gender>)CollectionsUtils.setNotNull(genders, this.genders);
 	}
 
 	@NotNull
@@ -106,7 +106,7 @@ public class PartnerSearchParams extends Identity<Integer> implements StrictSear
 	}
 
 	public void setPartnerRoles(@Nullable List<PartnerRole> partnerRoles) {
-		this.partnerRoles = CollectionsUtils.setNotNull(partnerRoles, this.partnerRoles);
+		this.partnerRoles = (List<PartnerRole>)CollectionsUtils.setNotNull(partnerRoles, this.partnerRoles);
 	}
 
 	public boolean isStrictSearch() {

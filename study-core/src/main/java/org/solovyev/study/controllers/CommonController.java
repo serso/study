@@ -67,7 +67,7 @@ public class CommonController implements ApplicationContextAware {
 	}
 
 	protected DataSource dataSource = null;
-	protected Validator beanValidator = null;
+	protected Validator validator = null;
 
 	@Autowired
 	public void setDataSource(DataSource dataSource) {
@@ -75,8 +75,8 @@ public class CommonController implements ApplicationContextAware {
 	}
 
 	@Autowired
-	public void setBeanValidator(Validator beanValidator) {
-		this.beanValidator = beanValidator;
+	public void setValidator(Validator beanValidator  ) {
+		this.validator = beanValidator;
 	}
 
 	@InitBinder

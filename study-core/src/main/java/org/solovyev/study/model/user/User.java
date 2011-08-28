@@ -1,7 +1,8 @@
-package org.solovyev.study.model;
+package org.solovyev.study.model.user;
 
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.study.model.data_object.DataObject;
 import org.solovyev.study.model.partner.Partner;
 import org.solovyev.study.model.partner.PartnerRole;
 import org.springframework.security.core.GrantedAuthority;
@@ -20,8 +21,6 @@ import java.util.List;
  */
 
 public class User extends DataObject<Integer> implements Cloneable, Serializable, UserDetails {
-
-	private Integer id = null;
 
 	@NotBlank
 	@Length(max = 255)
@@ -80,7 +79,7 @@ public class User extends DataObject<Integer> implements Cloneable, Serializable
 	}
 
 	public void setUserRoles(@Nullable List<UserRole> userRoles) {
-		this.userRoles = CollectionsUtils.setNotNull(userRoles, this.userRoles);
+		this.userRoles = (List<UserRole>)CollectionsUtils.setNotNull(userRoles, this.userRoles);
 	}
 
 	public String getPassword() {
@@ -153,7 +152,7 @@ public class User extends DataObject<Integer> implements Cloneable, Serializable
 	}
 
 	public void setLinkedPartners(@Nullable List<Partner> linkedPartners) {
-		this.linkedPartners = CollectionsUtils.setNotNull(linkedPartners, this.linkedPartners);
+		this.linkedPartners = (List<Partner>)CollectionsUtils.setNotNull(linkedPartners, this.linkedPartners);
 	}
 
 	public Partner getLinkedPartner(PartnerRole partnerRole) {

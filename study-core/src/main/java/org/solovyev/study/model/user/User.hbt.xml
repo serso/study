@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="org.solovyev.study.model.user.User" table="users" entity-name="user" catalog="study">
+
+		<id name="id" column="user_id" type="java.lang.Integer">
+			<generator class="native"/>
+		</id>
+
+		<property name="creationDate" type="java.util.Date" column="creation_date"/>
+
+		<property name="creatorId" type="java.lang.Integer" column="creator_id"/>
+
+		<property name="modificationDate" type="java.util.Date" column="modification_date"/>
+
+		<property name="email" column="email" type="java.lang.String"/>
+
+		<property name="username" column="username" type="java.lang.String"/>
+
+		<property name="password" column="password" type="java.lang.String"/>
+
+		<property name="enabled" column="enabled" type="java.lang.Boolean"/>
+
+		<bag name="linkedPartners" table="users_partners_link" lazy="false">
+			<key column="user_id"/>
+			<many-to-many column="partner_id" entity-name="partner"/>
+		</bag>
+
+		<bag name="userRoles" table="users_user_roles_link" lazy="false">
+			<key column="user_id"/>
+			<element column="user_role" type="org.solovyev.study.model.user.UserRole"/>
+		</bag>
+
+	</class>
+
+</hibernate-mapping>

@@ -7,12 +7,12 @@
 package org.solovyev.study.validators;
 
 import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.study.model.user.User;
+import org.solovyev.study.model.user.UserRole;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 import org.solovyev.study.model.partner.Partner;
-import org.solovyev.study.model.User;
-import org.solovyev.study.model.UserRole;
 
 import java.util.Collection;
 import java.util.List;

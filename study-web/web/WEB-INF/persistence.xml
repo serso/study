@@ -69,6 +69,6 @@
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
 	</bean>
 
-	<context:property-placeholder location="jdbc.properties"/>
+	<context:property-placeholder location="/WEB-INF/jdbc.properties"/>
 
 </beans>

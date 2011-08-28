@@ -6,15 +6,15 @@
 
 package org.solovyev.study.controllers.user;
 
+import org.solovyev.study.model.user.User;
+import org.solovyev.study.model.user.UserRole;
+import org.solovyev.study.model.user.UserSearchParams;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.solovyev.study.controllers.CommonController;
-import org.solovyev.study.model.User;
-import org.solovyev.study.model.UserRole;
-import org.solovyev.study.model.UserSearchParams;
 import org.solovyev.study.resources.ApplicationContextProvider;
 import org.solovyev.study.services.UserService;
 

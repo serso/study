@@ -65,7 +65,7 @@ public class SchoolDetailsController extends CommonController {
 	public String saveSchoolDetails(@ModelAttribute(SCHOOL_MODEL) Partner school, @ModelAttribute(SCHOOL_DETAILS_MODEL) SchoolDetails schoolDetails, BindingResult result, @ModelAttribute(BACK_BUTTON_MODEL) Button backButton) {
 		String view = DEFAULT_ROUTE;
 
-		this.beanValidator.validate(schoolDetails, result);
+		this.validator.validate(schoolDetails, result);
 
 		if (!result.hasErrors()) {
 			//here is the same object as in session partners' stack

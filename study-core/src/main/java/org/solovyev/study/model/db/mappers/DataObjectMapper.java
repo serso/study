@@ -7,7 +7,7 @@
 package org.solovyev.study.model.db.mappers;
 
 import org.jetbrains.annotations.NotNull;
-import org.solovyev.study.model.DataObject;
+import org.solovyev.study.model.data_object.DataObject;
 import org.solovyev.study.model.db.tables.users;
 
 import java.sql.ResultSet;

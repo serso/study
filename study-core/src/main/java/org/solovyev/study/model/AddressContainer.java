@@ -40,7 +40,7 @@ public class AddressContainer {
 	}
 
 	public void setAddresses(@Nullable List<Address> addresses) {
-		this.addresses = CollectionsUtils.setNotNull(addresses, this.addresses);
+		this.addresses = (List<Address>)CollectionsUtils.setNotNull(addresses, this.addresses);
 	}
 
 	@NotNull

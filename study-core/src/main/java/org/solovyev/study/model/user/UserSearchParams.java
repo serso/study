@@ -4,7 +4,9 @@
  * For more information, please, contact serso1988@gmail.com.
  */
 
-package org.solovyev.study.model;
+package org.solovyev.study.model.user;
+
+import org.solovyev.study.model.StrictSearch;
 
 /**
  * User: serso

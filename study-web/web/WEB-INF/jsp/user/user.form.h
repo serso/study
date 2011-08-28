@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="org.solovyev.study.controllers.user.UserCreateEditController" %>
-<%@ page import="org.solovyev.study.model.UserRole" %>
+<%@ page import="org.solovyev.study.model.user.UserRole" %>
 
 <%--@elvariable id="editUser" type="java.lang.Boolean"--%>
-<%--@elvariable id="user" type="org.solovyev.study.model.User"--%>
+<%--@elvariable id="user" type="org.solovyev.study.model.user.User"--%>
 
 <c:choose>
 	<c:when test="${editUser}">
@@ -40,7 +40,7 @@
 					<td class="td-form">
 						<form:label path="password">Password</form:label>
 					</td>
-						<%--@elvariable id="user" type="org.solovyev.study.model.User"--%>
+						<%--@elvariable id="user" type="org.solovyev.study.model.user.User"--%>
 					<td class="td-form">
 						<form:password path="password" disabled="${user.doNotChangePassword}" cssClass="form-input"
 						               cssErrorClass="error form-input"/>

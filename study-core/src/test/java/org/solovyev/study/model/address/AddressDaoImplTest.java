@@ -1,12 +1,11 @@
 package org.solovyev.study.model.address;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.solovyev.study.model.AddressType;
 import org.solovyev.study.model.partner.NaturalPerson;
 import org.solovyev.study.model.partner.Partner;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit38.AbstractTransactionalJUnit38SpringContextTests;
 
 /**
  * User: serso
@@ -14,10 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * Time: 8:31 PM
  */
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:test-context.xml")
-
-public class AddressDaoImplTest /*extends CommonTestCase*/ {
+@ContextConfiguration("/test-context.xml")
+public class AddressDaoImplTest extends AbstractTransactionalJUnit38SpringContextTests {
 
 	final AddressDaoImpl addressDao = new AddressDaoImpl();
 

@@ -6,9 +6,9 @@
 
 package org.solovyev.study.model.db.mappers;
 
-import org.solovyev.study.model.User;
 import org.solovyev.study.model.db.tables.users;
-import org.springframework.jdbc.core.simple.ParameterizedRowMapper;
+import org.solovyev.study.model.user.User;
+import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +18,7 @@ import java.sql.SQLException;
 * Date: Apr 5, 2010
 * Time: 2:41:53 AM
 */
-public final class UserMapper implements ParameterizedRowMapper<User> {
+public final class UserMapper implements RowMapper<User> {
 
 	@Override
 	public User mapRow(ResultSet rs, int rowNum) throws SQLException {

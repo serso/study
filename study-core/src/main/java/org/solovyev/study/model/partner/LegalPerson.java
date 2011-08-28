@@ -35,6 +35,9 @@ public class LegalPerson extends Partner{
 		super(id);
 	}
 
+	public LegalPerson() {
+	}
+
 	@NotNull
 	@Override
 	public PartnerType getPartnerType() {

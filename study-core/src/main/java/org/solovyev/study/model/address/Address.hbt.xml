@@ -3,11 +3,11 @@
 		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 
-<hibernate-mapping package="org.solovyev.study.model.address" schema="study">
+<hibernate-mapping package="org.solovyev.study.model.address">
 
-	<class name="Address" table="addresses" entity-name="address">
+	<class name="Address" table="addresses"  entity-name="address">
 
-		<id name="id" type="java.lang.Integer" column="address_id">
+		<id name="id" column="address_id" type="java.lang.Integer">
 			<generator class="native"/>
 		</id>
 
@@ -39,4 +39,5 @@
 
 
 	</class>
+
 </hibernate-mapping>

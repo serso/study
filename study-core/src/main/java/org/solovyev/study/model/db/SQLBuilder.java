@@ -108,12 +108,11 @@ public class SQLBuilder {
 	public SQLBuilder columns(@Nullable String tableAlias, @NotNull Enum[] enumeration) {
 		LoopData ld = new LoopData(enumeration);
 		for (Enum anEnum : enumeration) {
-			ld.next();
 			if (tableAlias != null) {
 				sql.append(tableAlias).append(".");
 			}
 			sql.append(anEnum);
-			if (!ld.isLast()) {
+			if (!ld.isLastAndNext()) {
 				sql.append(", ");
 			} else {
 				sql.append(" ");

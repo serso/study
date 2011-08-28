@@ -14,6 +14,7 @@
 	<bean id="configurationLoader" class="org.springmodules.validation.bean.conf.loader.annotation.AnnotationBeanValidationConfigurationLoader"/>
 
 	<bean id="errorCodeConverter" class="org.springmodules.validation.bean.converter.KeepAsIsErrorCodeConverter"/>
+
 	<bean id="beanValidator" class="org.springmodules.validation.bean.BeanValidator">
 		<property name="configurationLoader" ref="configurationLoader"/>
 		<property name="errorCodeConverter" ref="errorCodeConverter"/>
