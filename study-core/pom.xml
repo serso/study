@@ -18,7 +18,7 @@
     <dependencies>
 
         <dependency>
-            <groupId>org.solovyev.common</groupId>
+            <groupId>org.solovyev</groupId>
             <artifactId>common</artifactId>
             <version>0.1</version>
         </dependency>
