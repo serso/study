@@ -7,8 +7,8 @@
 package org.solovyev.study.model.data_object;
 
 import org.jetbrains.annotations.Nullable;
-import org.springmodules.validation.bean.conf.loader.annotation.handler.NotNull;
 import org.solovyev.common.definitions.Identity;
+import org.springmodules.validation.bean.conf.loader.annotation.handler.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -70,4 +70,19 @@ public class DataObject<T extends Serializable> extends Identity<T> {
 		sb.append('\'').append("super class:").append('\'').append(super.toString());
 		return sb.toString();
 	}
+
+    @Override
+    protected DataObject<T> clone() {
+        final DataObject<T> clone = (DataObject<T>) super.clone();
+
+        if (this.creationDate != null) {
+            clone.creationDate = new Date(this.creationDate.getTime());
+        }
+
+        if (this.modificationDate != null) {
+            clone.modificationDate = new Date(this.modificationDate.getTime());
+        }
+
+        return clone;
+    }
 }

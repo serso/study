@@ -8,8 +8,8 @@ package org.solovyev.study.services;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.solovyev.common.utils.CollectionsUtils;
-import org.solovyev.common.utils.StringsUtils;
+import org.solovyev.common.collections.Collections;
+import org.solovyev.common.text.Strings;
 import org.solovyev.study.model.partner.LegalPerson;
 import org.solovyev.study.model.partner.NaturalPerson;
 import org.solovyev.study.model.partner.Partner;
@@ -204,27 +204,27 @@ public class PartnerService {
 			sqlBuilder.equalsCondition(psp.isStrictSearch(), "p", partners.partner_id.name(), psp.getId(), sqlParameterSource);
 		}
 
-		if (StringsUtils.notEmpty(psp.getFirstName())) {
+		if (Strings.notEmpty(psp.getFirstName())) {
 			//noinspection ConstantConditions
 			sqlBuilder.equalsCondition(psp.isStrictSearch(), "p", partners.first_name.name(), psp.getFirstName(), sqlParameterSource);
 		}
 
-		if (StringsUtils.notEmpty(psp.getLastName())) {
+		if (Strings.notEmpty(psp.getLastName())) {
 			//noinspection ConstantConditions
 			sqlBuilder.equalsCondition(psp.isStrictSearch(), "p", partners.last_name.name(), psp.getLastName(), sqlParameterSource);
 		}
 
-		if (StringsUtils.notEmpty(psp.getCompanyName())) {
+		if (Strings.notEmpty(psp.getCompanyName())) {
 			//noinspection ConstantConditions
 			sqlBuilder.equalsCondition(psp.isStrictSearch(), "p", partners.company_name.name(), psp.getCompanyName(), sqlParameterSource);
 		}
 
-		if (CollectionsUtils.notEmpty(psp.getGenders())) {
+		if (Collections.notEmpty(psp.getGenders())) {
 			//noinspection ConstantConditions
 			sqlBuilder.in("p", partners.gender.name(), psp.getGenders(), sqlParameterSource, "empty");
 		}
 
-		if (CollectionsUtils.notEmpty(psp.getPartnerRoles())) {
+		if (Collections.notEmpty(psp.getPartnerRoles())) {
 			sqlBuilder.exists();
 			sqlBuilder.append("( ");
 
@@ -237,21 +237,21 @@ public class PartnerService {
 			sqlBuilder.append(") ");
 		}
 
-		if (CollectionsUtils.notEmpty(psp.getPartnerTypes())) {
+		if (Collections.notEmpty(psp.getPartnerTypes())) {
 			sqlBuilder.in("p", partners.partner_type.name(), psp.getPartnerTypes(), sqlParameterSource, "empty");
 		}
 
-		if (StringsUtils.notEmpty(psp.getCity()) || StringsUtils.notEmpty(psp.getCountry())) {
+		if (Strings.notEmpty(psp.getCity()) || Strings.notEmpty(psp.getCountry())) {
 			//noinspection ConstantConditions
 			sqlBuilder.exists().append("( ");
 
 			sqlBuilder.select().append("* ").from().tables(Config.DATABASE_SCHEMA, Tables.addresses.name(), "inner_a").where();
 			sqlBuilder.equalsCondition("inner_a", addresses.partner_id.name(), "p", partners.partner_id.name());
 			sqlBuilder.equalsCondition("inner_a", addresses.is_main.name(), Boolean.toString(true), sqlParameterSource);			
-			if (StringsUtils.notEmpty(psp.getCity())) {
+			if (Strings.notEmpty(psp.getCity())) {
 				sqlBuilder.equalsCondition(false, "inner_a", addresses.city.name(), psp.getCity(), sqlParameterSource);
 			}
-			if (StringsUtils.notEmpty(psp.getCountry())) {
+			if (Strings.notEmpty(psp.getCountry())) {
 				sqlBuilder.equalsCondition(false, "inner_a", addresses.country.name(), psp.getCountry(), sqlParameterSource);
 			}
 

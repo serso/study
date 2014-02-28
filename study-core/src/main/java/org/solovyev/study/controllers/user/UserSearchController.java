@@ -6,12 +6,12 @@
 
 package org.solovyev.study.controllers.user;
 
+import org.solovyev.common.msg.MessageType;
 import org.solovyev.study.model.user.User;
 import org.solovyev.study.model.user.UserSearchParams;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.exceptions.DatabaseException;

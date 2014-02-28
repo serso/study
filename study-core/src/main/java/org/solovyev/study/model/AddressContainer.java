@@ -12,7 +12,7 @@ import org.solovyev.study.model.address.Address;
 import org.springframework.util.AutoPopulatingList;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.CascadeValidation;
 import org.springmodules.validation.bean.conf.loader.annotation.handler.Min;
-import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.common.collections.Collections;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class AddressContainer {
 	}
 
 	public void setAddresses(@Nullable List<Address> addresses) {
-		this.addresses = (List<Address>)CollectionsUtils.setNotNull(addresses, this.addresses);
+		this.addresses = (List<Address>)Collections.setNotNull(addresses, this.addresses);
 	}
 
 	@NotNull

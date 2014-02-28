@@ -9,7 +9,7 @@ package org.solovyev.study.model;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.html.Button;
-import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.common.collections.Collections;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,7 +53,7 @@ public class SelectorImpl implements Selector {
 
 	@Override
 	public void setIndexes(@Nullable List<Integer> indexes) {
-		this.indexes = (List<Integer>)CollectionsUtils.setNotNull(indexes, this.indexes);
+		this.indexes = (List<Integer>)Collections.setNotNull(indexes, this.indexes);
 	}
 
 	@NotNull

@@ -8,7 +8,7 @@ package org.solovyev.study.model.partner;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.common.collections.Collections;
 import org.solovyev.study.model.data_object.DataObject;
 import org.solovyev.study.model.PartnerType;
 import org.solovyev.study.model.address.Address;
@@ -93,7 +93,7 @@ public abstract class Partner extends DataObject<Integer> {
 	}
 
 	public void setPartnerRoles(@Nullable List<PartnerRole> partnerRoles) {
-		this.partnerRoles = (List<PartnerRole>)CollectionsUtils.setNotNull(partnerRoles, this.partnerRoles);
+		this.partnerRoles = (List<PartnerRole>)Collections.setNotNull(partnerRoles, this.partnerRoles);
 	}
 
 	public boolean isNaturalPerson() {
@@ -115,7 +115,7 @@ public abstract class Partner extends DataObject<Integer> {
 	}
 
 	public void setLinkedUsers(@Nullable List<User> linkedUsers) {
-		this.linkedUsers = (List<User>)CollectionsUtils.setNotNull(linkedUsers, this.linkedUsers);
+		this.linkedUsers = (List<User>)Collections.setNotNull(linkedUsers, this.linkedUsers);
 	}
 
 	@NotNull

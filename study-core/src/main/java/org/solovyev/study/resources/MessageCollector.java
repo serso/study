@@ -8,9 +8,7 @@ package org.solovyev.study.resources;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.solovyev.common.definitions.Message;
-import org.solovyev.common.definitions.MessageImpl;
-import org.solovyev.common.definitions.MessageType;
+import org.solovyev.common.msg.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,8 +21,11 @@ import java.util.List;
  */
 public class MessageCollector {
 
+    @NotNull
+    private static final MessageFactory factory = Messages.newBundleMessageFactory("messages");
+
 	private @NotNull List<Message> messages = new ArrayList<Message>();
-	private @Nullable MessageType errorLevel = null;
+	private @Nullable MessageLevel errorLevel = null;
 
 	public MessageCollector() {
 	}
@@ -34,7 +35,7 @@ public class MessageCollector {
 	}
 
 	public void addMessage (String messageCode, MessageType messageType, Object... params) {
-		addMessage(new MessageImpl(messageCode, messageType, params));
+        addMessage(factory.newMessage(messageCode, messageType, params));
 	}
 
 	public void addMessage (String messageCode) {
@@ -43,17 +44,17 @@ public class MessageCollector {
 
 	public void addMessage (Message message) {
 		if (!this.messages.contains(message)) {
-			setErrorLevel(message.getMessageType());
+			setErrorLevel(message.getMessageLevel());
 			this.messages.add(message);
 		}
 	}
 
-	private void setErrorLevel(@NotNull MessageType errorLevel) {
-		this.errorLevel = MessageType.getMessageTypeWithHigherLevel(this.errorLevel, errorLevel);
+	private void setErrorLevel(@NotNull MessageLevel errorLevel) {
+		this.errorLevel = Messages.getMessageLevelWithHigherLevel(this.errorLevel, errorLevel);
 	}
 
 	public @Nullable
-	MessageType getErrorLevel() {
+    MessageLevel getErrorLevel() {
 		return errorLevel;
 	}
 
@@ -61,4 +62,9 @@ public class MessageCollector {
 		this.errorLevel = null;
 		this.messages.clear();
 	}
+
+    @NotNull
+    public static MessageFactory getFactory() {
+        return factory;
+    }
 }

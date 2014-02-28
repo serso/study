@@ -8,8 +8,8 @@ package org.solovyev.study.model.db;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.solovyev.common.collections.LoopData;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
-import org.solovyev.common.utils.LoopData;
 
 import java.util.Collection;
 

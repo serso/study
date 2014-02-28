@@ -6,7 +6,8 @@
 
 package org.solovyev.study.exceptions;
 
-import org.solovyev.common.definitions.Message;
+
+import org.solovyev.common.msg.Message;
 
 /**
  * User: serso

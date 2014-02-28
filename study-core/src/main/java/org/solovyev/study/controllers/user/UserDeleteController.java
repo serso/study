@@ -6,12 +6,12 @@
 
 package org.solovyev.study.controllers.user;
 
+import org.solovyev.common.msg.MessageType;
 import org.solovyev.study.model.user.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.exceptions.DatabaseException;
 import org.solovyev.study.model.DataObjectAction;

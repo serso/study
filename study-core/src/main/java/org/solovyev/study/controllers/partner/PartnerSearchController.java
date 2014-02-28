@@ -6,13 +6,13 @@
 
 package org.solovyev.study.controllers.partner;
 
+import org.solovyev.common.msg.MessageType;
 import org.solovyev.study.model.partner.Partner;
 import org.solovyev.study.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.controllers.user.UserCreateEditController;

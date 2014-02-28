@@ -6,7 +6,7 @@
 
 package org.solovyev.study.validators;
 
-import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.common.collections.Collections;
 import org.solovyev.study.model.user.User;
 import org.solovyev.study.model.user.UserRole;
 import org.springframework.validation.Errors;
@@ -44,7 +44,7 @@ public class UserValidator implements Validator {
 	public static boolean isValidUserRolesSet(Collection<UserRole> userRoles) {
 		boolean result = true;
 
-		if (CollectionsUtils.notEmpty(userRoles)) {
+		if (Collections.notEmpty(userRoles)) {
 			if (userRoles.contains(UserRole.user) || userRoles.contains(UserRole.approved_user)) {
 				//if set contains user or approved_user role
 				//then other roles must not be available

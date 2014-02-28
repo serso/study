@@ -8,7 +8,7 @@ package org.solovyev.study.model;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.solovyev.common.html.Selectable;
+import org.solovyev.common.Selectable;
 import org.solovyev.study.model.partner.Partner;
 
 import java.util.ArrayList;

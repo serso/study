@@ -15,13 +15,31 @@
     </properties>
 
     <modules>
-        <module>../common</module>
         <module>study-core</module>
         <module>study-misc</module>
         <module>study-web</module>
     </modules>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.solovyev</groupId>
+            <artifactId>common-all</artifactId>
+            <version>1.0.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.solovyev</groupId>
+            <artifactId>common-other</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>jgraphx</groupId>
+                    <artifactId>jgraphx</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>

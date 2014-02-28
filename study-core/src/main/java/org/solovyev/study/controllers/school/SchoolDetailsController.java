@@ -6,14 +6,16 @@
 
 package org.solovyev.study.controllers.school;
 
+import org.jetbrains.annotations.NotNull;
+import org.solovyev.common.msg.MessageFactory;
+import org.solovyev.common.msg.MessageType;
 import org.solovyev.study.model.partner.Partner;
 import org.solovyev.study.model.partner.PartnerRole;
+import org.solovyev.study.resources.MessageCollector;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.solovyev.common.definitions.MessageImpl;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.model.SchoolDetails;
@@ -37,7 +39,10 @@ public class SchoolDetailsController extends CommonController {
 
 	public static final String DEFAULT_ROUTE = "/school/details/edit";
 
-	@RequestMapping(value = "/school/details/edit.do", method = RequestMethod.GET)
+    @NotNull
+    private MessageFactory messageFactory = MessageCollector.getFactory();
+
+    @RequestMapping(value = "/school/details/edit.do", method = RequestMethod.GET)
 	public String prepareFormGet(Model model) {
 		return prepareForm(model);
 	}
@@ -56,7 +61,7 @@ public class SchoolDetailsController extends CommonController {
 			model.addAttribute(SCHOOL_DETAILS_MODEL, partner.getDetails().get(PartnerRole.school));
 		} else {
 			view = Config.EXCEPTION_PAGE_URL;
-			ApplicationContextProvider.getMessageCollector().addMessage(new MessageImpl(MessageCodes.internal_error.name(), MessageType.error, "Partners' stack is empty"));
+            ApplicationContextProvider.getMessageCollector().addMessage(messageFactory.newMessage(MessageCodes.internal_error.name(), MessageType.error, "Partners' stack is empty"));
 		}
 		return view;
 	}
@@ -76,7 +81,7 @@ public class SchoolDetailsController extends CommonController {
 				view = Config.REDIRECT + backButton.getAction();
 			} else {
 				view = Config.EXCEPTION_PAGE_URL;
-				ApplicationContextProvider.getMessageCollector().addMessage(new MessageImpl(MessageCodes.internal_error.name(), MessageType.error, "Back buttons' stack is empty"));
+				ApplicationContextProvider.getMessageCollector().addMessage(messageFactory.newMessage(MessageCodes.internal_error.name(), MessageType.error, "Back buttons' stack is empty"));
 			}
 		}
 

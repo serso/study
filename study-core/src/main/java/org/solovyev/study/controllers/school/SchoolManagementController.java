@@ -8,12 +8,12 @@ package org.solovyev.study.controllers.school;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.solovyev.common.msg.MessageType;
+import org.solovyev.study.resources.MessageCollector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.solovyev.common.definitions.MessageImpl;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.html.Button;
 import org.solovyev.study.controllers.CommonController;
 import org.solovyev.study.model.partner.Partner;
@@ -71,7 +71,7 @@ public class SchoolManagementController extends CommonController {
 			ApplicationContextProvider.getPartnerStack().push(partner);
 		} else {
 			view = Config.EXCEPTION_PAGE_URL;
-			ApplicationContextProvider.getMessageCollector().addMessage(new MessageImpl(MessageCodes.msg0013.name(), MessageType.error, schoolId));
+			ApplicationContextProvider.getMessageCollector().addMessage(MessageCollector.getFactory().newMessage(MessageCodes.msg0013.name(), MessageType.error, schoolId));
 		}
 		return view;
 	}

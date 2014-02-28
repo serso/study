@@ -9,7 +9,7 @@ package org.solovyev.study.model;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.solovyev.common.definitions.Identity;
-import org.solovyev.common.utils.CollectionsUtils;
+import org.solovyev.common.collections.Collections;
 import org.solovyev.study.model.partner.PartnerRole;
 
 import java.util.ArrayList;
@@ -88,7 +88,7 @@ public class PartnerSearchParams extends Identity<Integer> implements StrictSear
 	}
 
 	public void setPartnerTypes(@Nullable List<PartnerType> partnerTypes) {
-		this.partnerTypes = (List<PartnerType>)CollectionsUtils.setNotNull(partnerTypes, this.partnerTypes);
+		this.partnerTypes = (List<PartnerType>)Collections.setNotNull(partnerTypes, this.partnerTypes);
 	}
 
 	@NotNull
@@ -97,7 +97,7 @@ public class PartnerSearchParams extends Identity<Integer> implements StrictSear
 	}
 
 	public void setGenders(@Nullable List<Gender> genders) {
-		this.genders = (List<Gender>)CollectionsUtils.setNotNull(genders, this.genders);
+		this.genders = (List<Gender>)Collections.setNotNull(genders, this.genders);
 	}
 
 	@NotNull
@@ -106,7 +106,7 @@ public class PartnerSearchParams extends Identity<Integer> implements StrictSear
 	}
 
 	public void setPartnerRoles(@Nullable List<PartnerRole> partnerRoles) {
-		this.partnerRoles = (List<PartnerRole>)CollectionsUtils.setNotNull(partnerRoles, this.partnerRoles);
+		this.partnerRoles = (List<PartnerRole>)Collections.setNotNull(partnerRoles, this.partnerRoles);
 	}
 
 	public boolean isStrictSearch() {

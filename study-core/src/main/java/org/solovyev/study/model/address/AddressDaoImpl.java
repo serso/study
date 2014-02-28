@@ -8,7 +8,6 @@ package org.solovyev.study.model.address;
 
 import org.hibernate.Session;
 import org.jetbrains.annotations.NotNull;
-import org.solovyev.common.utils.StringsUtils;
 import org.solovyev.study.model.AddressType;
 import org.solovyev.study.model.CustomHibernateDaoSupport;
 import org.solovyev.study.model.partner.Partner;

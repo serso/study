@@ -6,6 +6,7 @@
 
 package org.solovyev.study.controllers.partner;
 
+import org.solovyev.common.msg.MessageType;
 import org.solovyev.study.model.partner.*;
 import org.solovyev.study.model.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.definitions.Pair;
 import org.solovyev.common.html.Button;
 import org.solovyev.common.html.HtmlUtils;

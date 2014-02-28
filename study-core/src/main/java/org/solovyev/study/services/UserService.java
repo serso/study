@@ -8,18 +8,18 @@ package org.solovyev.study.services;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.solovyev.common.utils.CollectionsUtils;
-import org.solovyev.common.utils.StringsUtils;
+import org.solovyev.common.collections.Collections;
+import org.solovyev.common.msg.MessageType;
+import org.solovyev.common.text.Strings;
 import org.solovyev.study.model.user.User;
 import org.solovyev.study.model.user.UserSearchParams;
+import org.solovyev.study.resources.MessageCollector;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.jdbc.core.simple.SimpleJdbcTemplate;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.solovyev.common.definitions.MessageImpl;
-import org.solovyev.common.definitions.MessageType;
 import org.solovyev.common.definitions.Property;
 import org.solovyev.study.exceptions.DatabaseException;
 import org.solovyev.study.model.db.SQLBuilder;
@@ -56,7 +56,7 @@ public class UserService {
 				//do delete
 				new SimpleJdbcTemplate(dataSource).update(deleteSql.toString(), sqlParameterSource);
 			} else {
-				throw new DatabaseException(new MessageImpl(MessageCodes.msg0009.name(), MessageType.error, user.getUsername()));
+				throw new DatabaseException(MessageCollector.getFactory().newMessage(MessageCodes.msg0009.name(), MessageType.error, user.getUsername()));
 			}
 		}
 		return user;
@@ -94,15 +94,15 @@ public class UserService {
 			sqlBuilder.equalsCondition(true, "u", users.user_id.name(), userSearchParams.getId(), sqlParameterSource);
 		}
 
-		if (StringsUtils.notEmpty(userSearchParams.getUsername())) {
+		if (Strings.notEmpty(userSearchParams.getUsername())) {
 			sqlBuilder.equalsCondition(userSearchParams.isStrictSearch(), "u", users.username.name(), userSearchParams.getUsername(), sqlParameterSource);
 		}
 
-		if (StringsUtils.notEmpty(userSearchParams.getEmail())) {
+		if (Strings.notEmpty(userSearchParams.getEmail())) {
 			sqlBuilder.equalsCondition(userSearchParams.isStrictSearch(), "u", users.email.name(), userSearchParams.getEmail(), sqlParameterSource);
 		}
 
-		if (CollectionsUtils.notEmpty(userSearchParams.getUserRoles())) {
+		if (Collections.notEmpty(userSearchParams.getUserRoles())) {
 			sqlBuilder.exists();
 			sqlBuilder.getSql().append("( ");
 
